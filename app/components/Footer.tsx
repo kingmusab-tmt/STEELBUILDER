@@ -5,7 +5,6 @@ import {
   Typography,
   Link,
   IconButton,
-  useMediaQuery,
   useTheme,
   Divider,
 } from "@mui/material";
@@ -21,15 +20,11 @@ import {
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
-
-// Custom color definitions
-const MAGENTA = "#E3007E";
-const BLUE_GREEN = "#00B3B3";
-const GOLD = "#FFD700";
+import { MAGENTA, BLUE_GREEN, GOLD } from "../theme/theme";
 
 // Styled components
 const FooterContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: "#FFFFFF",
+  backgroundColor: theme.palette.background.default,
   padding: theme.spacing(4, 0),
   borderTop: `3px solid ${BLUE_GREEN}`,
   marginTop: "auto",
@@ -53,7 +48,7 @@ const FooterTitle = styled(Typography)(({ theme }) => ({
 }));
 
 const FooterLink = styled(Link)(({ theme }) => ({
-  color: "#555",
+  color: theme.palette.text.secondary,
   display: "block",
   marginBottom: theme.spacing(1),
   textDecoration: "none",
@@ -91,13 +86,12 @@ const ContactItem = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   marginBottom: theme.spacing(1.5),
-  color: "#555",
+  color: theme.palette.text.secondary,
 }));
 
 // Component
 const Footer: React.FC = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -139,7 +133,7 @@ const Footer: React.FC = () => {
                 style={{ objectFit: "contain" }}
               />
             </CompanyLogo>
-            <Typography variant="body2" color="#555" paragraph>
+            <Typography variant="body2" color="text.secondary" paragraph>
               We provide innovative solutions and exceptional services to meet
               all your needs. Our commitment to quality and customer
               satisfaction sets us apart.
@@ -217,6 +211,9 @@ const Footer: React.FC = () => {
                     border: `1px solid ${BLUE_GREEN}`,
                     borderRadius: "4px 0 0 4px",
                     outline: "none",
+                    backgroundColor:
+                      theme.palette.mode === "dark" ? "#2a2a2a" : "#ffffff",
+                    color: theme.palette.text.primary,
                   }}
                 />
                 <button
@@ -239,12 +236,12 @@ const Footer: React.FC = () => {
         <Divider sx={{ my: 4, borderColor: BLUE_GREEN }} />
         {/* Copyright */}
         <Box textAlign="center" pt={1}>
-          <Typography variant="body2" color="#555">
+          <Typography variant="body2" color="text.secondary">
             © {new Date().getFullYear()} Steel Builders Technical Engineering
             Ltd. All rights reserved.
           </Typography>
-          <Typography variant="body2" color="#777">
-            Design by{" "}
+          <Typography variant="body2" color="text.secondary">
+            Designed and Developed by{" "}
             <Link
               href="https://triplemultipurposetechnology.com.ng"
               target="_blank"

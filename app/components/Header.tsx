@@ -12,7 +12,6 @@ import {
   useTheme,
   Box,
   Container,
-  Typography,
   Button,
   ListItemButton,
 } from "@mui/material";
@@ -25,17 +24,16 @@ import {
 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
-import Logo from "../public/logo.png";
-
-// Custom color definitions
-const MAGENTA = "#E3007E";
-const BLUE_GREEN = "#00B3B3";
-const GOLD = "#FFD700";
+import ThemeToggle from "./ThemeToggle";
+import { MAGENTA, BLUE_GREEN } from "../theme/theme";
 
 // Styled components
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: "#FFFFFF",
-  boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+  backgroundColor: theme.palette.background.default,
+  boxShadow:
+    theme.palette.mode === "dark"
+      ? "0 2px 10px rgba(0,0,0,0.5)"
+      : "0 2px 10px rgba(0,0,0,0.1)",
   padding: "0.5rem 0",
 }));
 
@@ -69,7 +67,7 @@ const SocialIconsContainer = styled(Box)(({ theme }) => ({
 }));
 
 const NavButton = styled(Button)(({ theme }) => ({
-  color: "#333333",
+  color: theme.palette.text.primary,
   fontWeight: 500,
   fontSize: "0.9rem",
   textTransform: "none",
@@ -107,7 +105,11 @@ const Header: React.FC = () => {
 
   const drawerContent = () => (
     <Box
-      sx={{ width: 250 }}
+      sx={{
+        width: 250,
+        backgroundColor: theme.palette.background.paper,
+        height: "100%",
+      }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
@@ -129,7 +131,7 @@ const Header: React.FC = () => {
                 primary={item.label}
                 primaryTypographyProps={{
                   sx: {
-                    color: "#333",
+                    color: theme.palette.text.primary,
                     "&:hover": { color: MAGENTA },
                   },
                 }}
@@ -159,6 +161,7 @@ const Header: React.FC = () => {
                 {social.icon}
               </IconButton>
             ))}
+            <ThemeToggle />
           </SocialIconsContainer>
 
           {/* Logo (Centered) */}
@@ -193,19 +196,22 @@ const Header: React.FC = () => {
 
           {/* Mobile menu button */}
           {isMobile && (
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleDrawer(true)}
-              sx={{
-                color: MAGENTA,
-                position: "absolute",
-                right: 0,
-              }}
+            <Box
+              sx={{ position: "absolute", right: 0, display: "flex", gap: 1 }}
             >
-              <MenuIcon />
-            </IconButton>
+              <ThemeToggle />
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={toggleDrawer(true)}
+                sx={{
+                  color: MAGENTA,
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Box>
           )}
         </Toolbar>
       </Container>
