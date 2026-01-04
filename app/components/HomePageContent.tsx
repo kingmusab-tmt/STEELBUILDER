@@ -116,12 +116,19 @@ export default function HomePageContent() {
           ]);
 
         if (heroRes.ok) setHeroImages(await heroRes.json());
-        if (achievementRes.ok) setAchievements(await achievementRes.json());
+        if (achievementRes.ok) {
+          setAchievements(await achievementRes.json());
+        } else {
+          console.error(
+            "Failed to fetch achievements:",
+            await achievementRes.text()
+          );
+        }
         if (clientRes.ok) setClients(await clientRes.json());
         if (testimonialRes.ok) setTestimonials(await testimonialRes.json());
         if (galleryRes.ok) setGalleryImages(await galleryRes.json());
       } catch (error) {
-        throw error;
+        console.error("Error loading data:", error);
       } finally {
         setLoading(false);
       }
@@ -142,18 +149,23 @@ export default function HomePageContent() {
 
   // Animate numbers
   useEffect(() => {
+    if (achievements.length === 0) return; // Don't run if no achievements loaded
+
     const animateNumbers = () => {
       const numberElements = document.querySelectorAll(".achievement-number");
 
       numberElements.forEach((element) => {
         const target = parseInt(element.getAttribute("data-target") || "0");
         const suffix = element.getAttribute("data-suffix") || "+";
+
+        if (target === 0) return; // Skip if target is 0
+
         const increment = Math.ceil(target / 100);
         let current = 0;
 
         const timer = setInterval(() => {
           current += increment;
-          if (current > target) {
+          if (current >= target) {
             element.textContent = `${target}${suffix}`;
             clearInterval(timer);
           } else {
@@ -167,12 +179,15 @@ export default function HomePageContent() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            animateNumbers();
+            // Small delay to ensure DOM is ready
+            setTimeout(() => {
+              animateNumbers();
+            }, 100);
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 } // Reduced threshold for better triggering
     );
 
     const achievementsSection = document.getElementById("achievements");
@@ -624,7 +639,8 @@ export default function HomePageContent() {
                     data-target={achievement.number}
                     data-suffix={achievement.suffix || "+"}
                   >
-                    0
+                    {achievement.number}
+                    {achievement.suffix || "+"}
                   </Typography>
                   <Typography variant="h6" color="text.secondary">
                     {achievement.label}

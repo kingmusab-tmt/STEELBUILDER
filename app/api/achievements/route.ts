@@ -4,6 +4,14 @@ import Achievement from "@/models/achievement";
 
 export async function GET() {
   try {
+    if (!process.env.MONGODB_URI) {
+      console.error("MONGODB_URI is not defined");
+      return NextResponse.json(
+        { error: "Database configuration missing" },
+        { status: 500 }
+      );
+    }
+
     await connectDB();
     const achievements = await Achievement.find().sort({ order: 1 });
     const transformedAchievements = achievements.map((achievement) => ({
@@ -15,8 +23,12 @@ export async function GET() {
     }));
     return NextResponse.json(transformedAchievements);
   } catch (error) {
+    console.error("Achievement fetch error:", error);
     return NextResponse.json(
-      { error: "Failed to load achievements" },
+      {
+        error: "Failed to load achievements",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }
