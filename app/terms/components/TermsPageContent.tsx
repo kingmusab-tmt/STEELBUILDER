@@ -66,8 +66,7 @@ export default function TermsPageContent() {
     },
     {
       title: "3. User Obligations",
-      content:
-        "When using our services and website, you agree to:",
+      content: "When using our services and website, you agree to:",
       items: [
         "Provide accurate and complete information in all communications",
         "Maintain the confidentiality of your account credentials",
@@ -80,8 +79,7 @@ export default function TermsPageContent() {
     },
     {
       title: "4. Quotes and Pricing",
-      content:
-        "Regarding our pricing and quotations:",
+      content: "Regarding our pricing and quotations:",
       items: [
         "All quotes are valid for 30 days unless otherwise stated",
         "Prices are subject to change based on material costs and specifications",
@@ -93,8 +91,7 @@ export default function TermsPageContent() {
     },
     {
       title: "5. Orders and Payment Terms",
-      content:
-        "Our order and payment policies include:",
+      content: "Our order and payment policies include:",
       items: [
         "Orders are confirmed upon receipt of deposit or full payment as agreed",
         "Standard payment terms: 50% deposit, 50% upon delivery/installation",
@@ -106,8 +103,7 @@ export default function TermsPageContent() {
     },
     {
       title: "6. Delivery and Installation",
-      content:
-        "For product delivery and installation:",
+      content: "For product delivery and installation:",
       items: [
         "Delivery timelines are estimates and may vary based on production schedules",
         "Customer is responsible for providing suitable installation site",
@@ -119,8 +115,7 @@ export default function TermsPageContent() {
     },
     {
       title: "7. Warranties and Guarantees",
-      content:
-        "Our warranty terms:",
+      content: "Our warranty terms:",
       items: [
         "All products come with a manufacturer's warranty (duration varies by product)",
         "Warranty covers manufacturing defects and workmanship issues",
@@ -132,8 +127,7 @@ export default function TermsPageContent() {
     },
     {
       title: "8. Limitation of Liability",
-      content:
-        "To the maximum extent permitted by law:",
+      content: "To the maximum extent permitted by law:",
       items: [
         "We are not liable for indirect, incidental, or consequential damages",
         "Our total liability is limited to the amount paid for the specific product/service",
@@ -145,8 +139,7 @@ export default function TermsPageContent() {
     },
     {
       title: "9. Intellectual Property Rights",
-      content:
-        "All content on our website and in our materials is protected:",
+      content: "All content on our website and in our materials is protected:",
       items: [
         "Steel Builders owns all trademarks, logos, and brand elements",
         "Website content, designs, and documentation are copyrighted",
@@ -158,8 +151,7 @@ export default function TermsPageContent() {
     },
     {
       title: "10. Cancellation and Refund Policy",
-      content:
-        "For order cancellations and refunds:",
+      content: "For order cancellations and refunds:",
       items: [
         "Cancellations must be made in writing before production begins",
         "Deposits are non-refundable once production has commenced",
@@ -171,8 +163,7 @@ export default function TermsPageContent() {
     },
     {
       title: "11. Dispute Resolution",
-      content:
-        "In case of disputes:",
+      content: "In case of disputes:",
       items: [
         "Parties agree to attempt good-faith negotiation first",
         "Mediation will be conducted before litigation if negotiation fails",
@@ -205,8 +196,7 @@ export default function TermsPageContent() {
     },
     {
       title: "15. Contact Information",
-      content:
-        "For questions about these Terms of Service, please contact us:",
+      content: "For questions about these Terms of Service, please contact us:",
       items: [
         "Email: steelbuilderseng@gmail.com",
         "Phone: +234 813 615 0837",
@@ -260,10 +250,10 @@ export default function TermsPageContent() {
           <Box mb={6}>
             <Typography variant="body1" paragraph>
               These Terms of Service ("Terms") constitute a legally binding
-              agreement between you and Steel Builders Technical Engineering
-              Ltd regarding your use of our website, products, and services.
-              These Terms apply to all visitors, users, and customers who
-              access or use our services.
+              agreement between you and Steel Builders Technical Engineering Ltd
+              regarding your use of our website, products, and services. These
+              Terms apply to all visitors, users, and customers who access or
+              use our services.
             </Typography>
             <Typography variant="body1" paragraph>
               Please read these Terms carefully. By accessing or using any part

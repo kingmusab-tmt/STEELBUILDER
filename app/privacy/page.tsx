@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import PrivacyPageContent from "./components/PrivacyPageContent";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Steel Builders Technical Engineering Ltd - Data Protection & Security",
+  title:
+    "Privacy Policy | Steel Builders Technical Engineering Ltd - Data Protection & Security",
   description:
     "Steel Builders Technical Engineering Ltd privacy policy. Learn how we collect, use, protect and manage your personal information when you use our website and services in Nigeria.",
   keywords: [

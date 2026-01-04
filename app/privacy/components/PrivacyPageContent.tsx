@@ -222,16 +222,16 @@ export default function PrivacyPageContent() {
           {/* Introduction */}
           <Box mb={6}>
             <Typography variant="body1" paragraph>
-              Steel Builders Technical Engineering Ltd ("we," "our," or "us")
-              is committed to protecting your privacy and ensuring the security
-              of your personal information. This Privacy Policy explains how we
-              collect, use, disclose, and safeguard your data when you visit
-              our website, use our services, or interact with us.
+              Steel Builders Technical Engineering Ltd ("we," "our," or "us") is
+              committed to protecting your privacy and ensuring the security of
+              your personal information. This Privacy Policy explains how we
+              collect, use, disclose, and safeguard your data when you visit our
+              website, use our services, or interact with us.
             </Typography>
             <Typography variant="body1" paragraph>
-              By using our website and services, you agree to the collection
-              and use of information in accordance with this policy. If you do
-              not agree with our policies and practices, please do not use our
+              By using our website and services, you agree to the collection and
+              use of information in accordance with this policy. If you do not
+              agree with our policies and practices, please do not use our
               services.
             </Typography>
           </Box>

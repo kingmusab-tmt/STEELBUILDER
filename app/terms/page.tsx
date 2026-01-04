@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import TermsPageContent from "./components/TermsPageContent";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Steel Builders Technical Engineering Ltd - Service Agreement",
+  title:
+    "Terms of Service | Steel Builders Technical Engineering Ltd - Service Agreement",
   description:
     "Steel Builders Technical Engineering Ltd terms of service and conditions. Understand your rights and obligations when using our industrial machinery products and services in Nigeria.",
   keywords: [
