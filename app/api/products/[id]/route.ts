@@ -15,7 +15,17 @@ export async function GET(
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
-    return NextResponse.json(product);
+    return NextResponse.json({
+      id: product._id.toString(),
+      name: product.name,
+      category: product.category,
+      description: product.description,
+      image: product.image,
+      specifications: product.specifications,
+      applications: product.applications,
+      features: product.features,
+      createdAt: product.createdAt,
+    });
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch product" },
@@ -41,7 +51,17 @@ export async function PUT(
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
-    return NextResponse.json(product);
+    return NextResponse.json({
+      id: product._id.toString(),
+      name: product.name,
+      category: product.category,
+      description: product.description,
+      image: product.image,
+      specifications: product.specifications,
+      applications: product.applications,
+      features: product.features,
+      createdAt: product.createdAt,
+    });
   } catch {
     return NextResponse.json(
       { error: "Failed to update product" },

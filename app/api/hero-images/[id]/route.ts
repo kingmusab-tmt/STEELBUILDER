@@ -16,8 +16,14 @@ export async function GET(
         { status: 404 }
       );
     }
-    return NextResponse.json(image);
-  } catch {
+    return NextResponse.json({
+      id: image._id.toString(),
+      title: image.title,
+      url: image.url,
+      order: image.order,
+    });
+  } catch (error) {
+    console.error("Hero image fetch error:", error);
     return NextResponse.json(
       { error: "Failed to fetch hero image" },
       { status: 500 }
@@ -43,8 +49,14 @@ export async function PUT(
         { status: 404 }
       );
     }
-    return NextResponse.json(image);
-  } catch {
+    return NextResponse.json({
+      id: image._id.toString(),
+      title: image.title,
+      url: image.url,
+      order: image.order,
+    });
+  } catch (error) {
+    console.error("Hero image update error:", error);
     return NextResponse.json(
       { error: "Failed to update hero image" },
       { status: 500 }

@@ -6,8 +6,15 @@ export async function GET() {
   try {
     await connectDB();
     const clients = await Client.find().sort({ order: 1 });
-    return NextResponse.json(clients);
-  } catch {
+    const transformedClients = clients.map((c) => ({
+      id: c._id.toString(),
+      name: c.name,
+      logo: c.logo,
+      order: c.order,
+    }));
+    return NextResponse.json(transformedClients);
+  } catch (error) {
+    console.error("Clients fetch error:", error);
     return NextResponse.json(
       { error: "Failed to load clients" },
       { status: 500 }
@@ -27,8 +34,17 @@ export async function POST(request: NextRequest) {
     });
 
     await client.save();
-    return NextResponse.json(client, { status: 201 });
-  } catch {
+    return NextResponse.json(
+      {
+        id: client._id.toString(),
+        name: client.name,
+        logo: client.logo,
+        order: client.order,
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Client create error:", error);
     return NextResponse.json(
       { error: "Failed to add client" },
       { status: 500 }

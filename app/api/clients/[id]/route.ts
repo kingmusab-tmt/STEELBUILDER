@@ -3,6 +3,37 @@ import connectDB from "@/utils/connectDB";
 import Client from "@/models/client";
 import { Types } from "mongoose";
 
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  try {
+    await connectDB();
+
+    if (!Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ error: "Invalid client ID" }, { status: 400 });
+    }
+
+    const client = await Client.findById(id);
+    if (!client) {
+      return NextResponse.json({ error: "Client not found" }, { status: 404 });
+    }
+    return NextResponse.json({
+      id: client._id.toString(),
+      name: client.name,
+      logo: client.logo,
+      order: client.order,
+    });
+  } catch (error) {
+    console.error("Client fetch error:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch client" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -24,7 +55,12 @@ export async function PUT(
     if (!client) {
       return NextResponse.json({ error: "Client not found" }, { status: 404 });
     }
-    return NextResponse.json(client);
+    return NextResponse.json({
+      id: client._id.toString(),
+      name: client.name,
+      logo: client.logo,
+      order: client.order,
+    });
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to update client" },

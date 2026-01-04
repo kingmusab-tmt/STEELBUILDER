@@ -6,8 +6,20 @@ export async function GET() {
   try {
     await connectDB();
     const products = await Product.find().sort({ createdAt: -1 });
-    return NextResponse.json(products);
-  } catch {
+    const transformedProducts = products.map((p) => ({
+      id: p._id.toString(),
+      name: p.name,
+      category: p.category,
+      description: p.description,
+      image: p.image,
+      specifications: p.specifications,
+      applications: p.applications,
+      features: p.features,
+      createdAt: p.createdAt,
+    }));
+    return NextResponse.json(transformedProducts);
+  } catch (error) {
+    console.error("Products fetch error:", error);
     return NextResponse.json(
       { error: "Failed to fetch products" },
       { status: 500 }
@@ -31,7 +43,20 @@ export async function POST(request: NextRequest) {
     });
 
     await newProduct.save();
-    return NextResponse.json(newProduct, { status: 201 });
+    return NextResponse.json(
+      {
+        id: newProduct._id.toString(),
+        name: newProduct.name,
+        category: newProduct.category,
+        description: newProduct.description,
+        image: newProduct.image,
+        specifications: newProduct.specifications,
+        applications: newProduct.applications,
+        features: newProduct.features,
+        createdAt: newProduct.createdAt,
+      },
+      { status: 201 }
+    );
   } catch {
     return NextResponse.json(
       { error: "Failed to create product" },

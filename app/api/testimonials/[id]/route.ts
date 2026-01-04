@@ -25,7 +25,15 @@ export async function GET(
         { status: 404 }
       );
     }
-    return NextResponse.json(testimonial);
+    return NextResponse.json({
+      id: testimonial._id.toString(),
+      name: testimonial.name,
+      company: testimonial.company,
+      message: testimonial.message,
+      rating: testimonial.rating,
+      image: testimonial.image,
+      order: testimonial.order,
+    });
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch testimonial" },
@@ -61,7 +69,15 @@ export async function PUT(
         { status: 404 }
       );
     }
-    return NextResponse.json(testimonial);
+    return NextResponse.json({
+      id: testimonial._id.toString(),
+      name: testimonial.name,
+      company: testimonial.company,
+      message: testimonial.message,
+      rating: testimonial.rating,
+      image: testimonial.image,
+      order: testimonial.order,
+    });
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to update testimonial" },

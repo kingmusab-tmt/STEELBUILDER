@@ -18,7 +18,13 @@ export async function GET(
       );
     }
 
-    return NextResponse.json(item);
+    return NextResponse.json({
+      id: item._id.toString(),
+      title: item.title,
+      image: item.image,
+      order: item.order,
+      createdAt: item.createdAt,
+    });
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch gallery item" },
@@ -47,7 +53,13 @@ export async function PUT(
       );
     }
 
-    return NextResponse.json(item);
+    return NextResponse.json({
+      id: item._id.toString(),
+      title: item.title,
+      image: item.image,
+      order: item.order,
+      createdAt: item.createdAt,
+    });
   } catch {
     return NextResponse.json(
       { error: "Failed to update gallery item" },
