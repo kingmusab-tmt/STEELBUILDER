@@ -385,7 +385,7 @@ export default function ServicesPageContent() {
               }}
             >
               <Image
-                src="/images/t7.jpg"
+                src="/images/t34.jpg"
                 alt="Steel Builders manufacturing facility with advanced machinery and equipment"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"

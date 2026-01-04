@@ -72,10 +72,17 @@ export async function DELETE(
       );
     }
 
-    return NextResponse.json({ success: true });
-  } catch {
+    return NextResponse.json({
+      success: true,
+      message: "Gallery item deleted successfully",
+    });
+  } catch (error) {
+    console.error("Gallery delete error:", error);
     return NextResponse.json(
-      { error: "Failed to delete gallery item" },
+      {
+        error: "Failed to delete gallery item",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }

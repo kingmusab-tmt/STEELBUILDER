@@ -176,6 +176,13 @@ export default function AdminGalleryDashboard() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         });
+        if (!response.ok) {
+          const error = await response.json();
+          setMessage(
+            `Error updating gallery item: ${error.error || "Unknown error"}`
+          );
+          return;
+        }
         setMessage("Gallery item updated successfully");
       } else {
         response = await fetch("/api/gallery", {
@@ -183,14 +190,21 @@ export default function AdminGalleryDashboard() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         });
+        if (!response.ok) {
+          const error = await response.json();
+          setMessage(
+            `Error creating gallery item: ${error.error || "Unknown error"}`
+          );
+          return;
+        }
         setMessage("Gallery item created successfully");
       }
 
-      if (response.ok) {
-        handleCloseDialog();
-        fetchGallery();
-      }
-    } catch {
+      handleCloseDialog();
+      fetchGallery();
+      setTimeout(() => setMessage(""), 3000);
+    } catch (error) {
+      console.error("Save error:", error);
       setMessage("Error saving gallery item");
     }
   };
@@ -208,8 +222,13 @@ export default function AdminGalleryDashboard() {
       if (response.ok) {
         setMessage("Gallery item deleted successfully");
         fetchGallery();
+        setTimeout(() => setMessage(""), 3000);
+      } else {
+        const error = await response.json();
+        setMessage(`Error: ${error.error || "Failed to delete gallery item"}`);
       }
-    } catch {
+    } catch (error) {
+      console.error("Delete error:", error);
       setMessage("Error deleting gallery item");
     }
   };

@@ -49,10 +49,17 @@ export async function DELETE(
     if (!client) {
       return NextResponse.json({ error: "Client not found" }, { status: 404 });
     }
-    return NextResponse.json({ success: true });
+    return NextResponse.json({
+      success: true,
+      message: "Client deleted successfully",
+    });
   } catch (error) {
+    console.error("Client delete error:", error);
     return NextResponse.json(
-      { error: "Failed to delete client" },
+      {
+        error: "Failed to delete client",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }

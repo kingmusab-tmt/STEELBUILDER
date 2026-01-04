@@ -203,6 +203,13 @@ export default function AdminProductsDashboard() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(productData),
         });
+        if (!response.ok) {
+          const error = await response.json();
+          setMessage(
+            `Error updating product: ${error.error || "Unknown error"}`
+          );
+          return;
+        }
         setMessage("Product updated successfully");
       } else {
         response = await fetch("/api/products", {
@@ -210,14 +217,21 @@ export default function AdminProductsDashboard() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(productData),
         });
+        if (!response.ok) {
+          const error = await response.json();
+          setMessage(
+            `Error creating product: ${error.error || "Unknown error"}`
+          );
+          return;
+        }
         setMessage("Product created successfully");
       }
 
-      if (response.ok) {
-        handleCloseDialog();
-        fetchProducts();
-      }
-    } catch {
+      handleCloseDialog();
+      fetchProducts();
+      setTimeout(() => setMessage(""), 3000);
+    } catch (error) {
+      console.error("Save error:", error);
       setMessage("Error saving product");
     }
   };
@@ -235,8 +249,13 @@ export default function AdminProductsDashboard() {
       if (response.ok) {
         setMessage("Product deleted successfully");
         fetchProducts();
+        setTimeout(() => setMessage(""), 3000);
+      } else {
+        const error = await response.json();
+        setMessage(`Error: ${error.error || "Failed to delete product"}`);
       }
-    } catch {
+    } catch (error) {
+      console.error("Delete error:", error);
       setMessage("Error deleting product");
     }
   };

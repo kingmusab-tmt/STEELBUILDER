@@ -246,6 +246,10 @@ export default function AdminDashboard() {
               h.id === editingHero.id ? { ...h, ...heroForm } : h
             )
           );
+        } else {
+          const error = await res.json();
+          alert(`Error: ${error.error || "Failed to update hero image"}`);
+          return;
         }
       } else {
         const res = await fetch("/api/hero-images", {
@@ -256,11 +260,16 @@ export default function AdminDashboard() {
         if (res.ok) {
           const newHero = await res.json();
           setHeroImages([newHero, ...heroImages]);
+        } else {
+          const error = await res.json();
+          alert(`Error: ${error.error || "Failed to create hero image"}`);
+          return;
         }
       }
       setHeroDialogOpen(false);
     } catch (error) {
-      throw error;
+      console.error("Save hero error:", error);
+      alert("Failed to save hero image");
     }
   };
 
@@ -270,9 +279,13 @@ export default function AdminDashboard() {
       const res = await fetch(`/api/hero-images/${id}`, { method: "DELETE" });
       if (res.ok) {
         setHeroImages(heroImages.filter((h) => h.id !== id));
+      } else {
+        const error = await res.json();
+        alert(`Error: ${error.error || "Failed to delete hero image"}`);
       }
     } catch (error) {
-      throw error;
+      console.error("Delete hero error:", error);
+      alert("Failed to delete hero image");
     }
   };
 
@@ -312,6 +325,10 @@ export default function AdminDashboard() {
               a.id === editingAchievement.id ? { ...a, ...achievementForm } : a
             )
           );
+        } else {
+          const error = await res.json();
+          alert(`Error: ${error.error || "Failed to update achievement"}`);
+          return;
         }
       } else {
         // Create new achievement
@@ -323,11 +340,16 @@ export default function AdminDashboard() {
         if (res.ok) {
           const newAchievement = await res.json();
           setAchievements([...achievements, newAchievement]);
+        } else {
+          const error = await res.json();
+          alert(`Error: ${error.error || "Failed to create achievement"}`);
+          return;
         }
       }
       setAchievementDialogOpen(false);
     } catch (error) {
-      throw error;
+      console.error("Save achievement error:", error);
+      alert("Failed to save achievement");
     }
   };
 
@@ -337,9 +359,13 @@ export default function AdminDashboard() {
       const res = await fetch(`/api/achievements/${id}`, { method: "DELETE" });
       if (res.ok) {
         setAchievements(achievements.filter((a) => a.id !== id));
+      } else {
+        const error = await res.json();
+        alert(`Error: ${error.error || "Failed to delete achievement"}`);
       }
     } catch (error) {
-      throw error;
+      console.error("Delete achievement error:", error);
+      alert("Failed to delete achievement");
     }
   };
 
@@ -375,6 +401,10 @@ export default function AdminDashboard() {
               c.id === editingClient.id ? { ...c, ...clientForm } : c
             )
           );
+        } else {
+          const error = await res.json();
+          alert(`Error: ${error.error || "Failed to update client"}`);
+          return;
         }
       } else {
         const res = await fetch("/api/clients", {
@@ -385,11 +415,16 @@ export default function AdminDashboard() {
         if (res.ok) {
           const newClient = await res.json();
           setClients([newClient, ...clients]);
+        } else {
+          const error = await res.json();
+          alert(`Error: ${error.error || "Failed to create client"}`);
+          return;
         }
       }
       setClientDialogOpen(false);
     } catch (error) {
-      throw error;
+      console.error("Save client error:", error);
+      alert("Failed to save client");
     }
   };
 
@@ -399,9 +434,13 @@ export default function AdminDashboard() {
       const res = await fetch(`/api/clients/${id}`, { method: "DELETE" });
       if (res.ok) {
         setClients(clients.filter((c) => c.id !== id));
+      } else {
+        const error = await res.json();
+        alert(`Error: ${error.error || "Failed to delete client"}`);
       }
     } catch (error) {
-      throw error;
+      console.error("Delete client error:", error);
+      alert("Failed to delete client");
     }
   };
 
@@ -453,6 +492,10 @@ export default function AdminDashboard() {
               t.id === editingTestimonial.id ? { ...t, ...testimonialForm } : t
             )
           );
+        } else {
+          const error = await res.json();
+          alert(`Error: ${error.error || "Failed to update testimonial"}`);
+          return;
         }
       } else {
         const res = await fetch("/api/testimonials", {
@@ -466,11 +509,16 @@ export default function AdminDashboard() {
         if (res.ok) {
           const newTestimonial = await res.json();
           setTestimonials([newTestimonial, ...testimonials]);
+        } else {
+          const error = await res.json();
+          alert(`Error: ${error.error || "Failed to create testimonial"}`);
+          return;
         }
       }
       setTestimonialDialogOpen(false);
     } catch (error) {
-      throw error;
+      console.error("Save testimonial error:", error);
+      alert("Failed to save testimonial");
     }
   };
 
@@ -480,9 +528,13 @@ export default function AdminDashboard() {
       const res = await fetch(`/api/testimonials/${id}`, { method: "DELETE" });
       if (res.ok) {
         setTestimonials(testimonials.filter((t) => t.id !== id));
+      } else {
+        const error = await res.json();
+        alert(`Error: ${error.error || "Failed to delete testimonial"}`);
       }
     } catch (error) {
-      throw error;
+      console.error("Delete testimonial error:", error);
+      alert("Failed to delete testimonial");
     }
   };
 

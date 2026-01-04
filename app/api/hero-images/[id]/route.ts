@@ -66,10 +66,17 @@ export async function DELETE(
         { status: 404 }
       );
     }
-    return NextResponse.json({ success: true });
-  } catch {
+    return NextResponse.json({
+      success: true,
+      message: "Hero image deleted successfully",
+    });
+  } catch (error) {
+    console.error("Hero image delete error:", error);
     return NextResponse.json(
-      { error: "Failed to delete hero image" },
+      {
+        error: "Failed to delete hero image",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }

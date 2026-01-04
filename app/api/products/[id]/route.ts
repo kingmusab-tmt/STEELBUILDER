@@ -62,9 +62,18 @@ export async function DELETE(
     if (!product) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
-  } catch {
+
+    return NextResponse.json({
+      success: true,
+      message: "Product deleted successfully",
+    });
+  } catch (error) {
+    console.error("Product delete error:", error);
     return NextResponse.json(
-      { error: "Failed to delete product" },
+      {
+        error: "Failed to delete product",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }

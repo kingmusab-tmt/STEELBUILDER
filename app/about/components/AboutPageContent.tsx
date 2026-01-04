@@ -340,7 +340,7 @@ export default function AboutPageContent() {
               }}
             >
               <Image
-                src="/images/t7.jpg"
+                src="/images/logo.png"
                 alt="Steel Builders Technical Engineering industrial manufacturing facility showcasing machinery production"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -554,7 +554,7 @@ export default function AboutPageContent() {
                 }}
               >
                 <Image
-                  src="/images/t1.jpg"
+                  src="/images/t32.jpg"
                   alt="Steel Builders industrial machinery projects showcasing block molding machines and equipment"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"

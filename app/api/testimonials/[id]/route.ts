@@ -92,10 +92,17 @@ export async function DELETE(
         { status: 404 }
       );
     }
-    return NextResponse.json({ success: true });
+    return NextResponse.json({
+      success: true,
+      message: "Testimonial deleted successfully",
+    });
   } catch (error) {
+    console.error("Testimonial delete error:", error);
     return NextResponse.json(
-      { error: "Failed to delete testimonial" },
+      {
+        error: "Failed to delete testimonial",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
       { status: 500 }
     );
   }
