@@ -103,11 +103,10 @@ const Footer: React.FC = () => {
   ];
 
   const companyLinks = [
-    { label: "Company Profile", href: "/company-profile" },
-    { label: "Careers", href: "/careers" },
-    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
-    { label: "Sitemap", href: "/sitemap" },
+    { label: "Request Quote", href: "/quote" },
   ];
 
   const socialIcons = [
