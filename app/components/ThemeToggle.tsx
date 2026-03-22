@@ -10,6 +10,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <Tooltip title={`Switch to ${mode === "light" ? "dark" : "light"} mode`}>
       <IconButton
+        aria-label={`Switch to ${mode === "light" ? "dark" : "light"} mode`}
         onClick={toggleTheme}
         sx={{
           color: mode === "light" ? "#333" : "#fff",

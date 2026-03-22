@@ -59,17 +59,6 @@ const FooterLink = styled(Link)(({ theme }) => ({
   },
 }));
 
-const SocialIcon = styled(IconButton)(({ theme }) => ({
-  backgroundColor: BLUE_GREEN,
-  color: "white",
-  margin: theme.spacing(0, 0.5),
-  transition: "all 0.3s ease",
-  "&:hover": {
-    backgroundColor: MAGENTA,
-    transform: "translateY(-3px)",
-  },
-}));
-
 const CompanyLogo = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -111,18 +100,22 @@ const Footer: React.FC = () => {
     {
       icon: <FacebookIcon />,
       href: "https://www.facebook.com/profile.php?id=100075628998773",
+      label: "Visit our Facebook page",
     },
     {
       icon: <InstagramIcon />,
       href: "https://www.instagram.com/steel_builders_tech_eng_ltd/",
+      label: "Visit our Instagram page",
     },
     {
       icon: <FaTiktok />,
       href: "https://www.tiktok.com/@steelbuilderstech",
+      label: "Visit our TikTok page",
     },
     {
       icon: <YouTubeIcon />,
       href: "https://www.youtube.com/@steel-builders-technical-e4768",
+      label: "Visit our YouTube channel",
     },
   ];
 
@@ -148,15 +141,28 @@ const Footer: React.FC = () => {
             </Typography>
             <Box display="flex">
               {socialIcons.map((social, index) => (
-                <a
+                <IconButton
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ display: "inline-flex" }}
+                  aria-label={social.label}
+                  title={social.label}
+                  sx={{
+                    backgroundColor: BLUE_GREEN,
+                    color: "white",
+                    transition: "all 0.3s ease",
+                    width: 44,
+                    height: 44,
+                    mx: 0.75,
+                    "&:hover": {
+                      backgroundColor: MAGENTA,
+                      transform: "translateY(-3px)",
+                    },
+                  }}
                 >
-                  <SocialIcon>{social.icon}</SocialIcon>
-                </a>
+                  {social.icon}
+                </IconButton>
               ))}
             </Box>
           </Grid>

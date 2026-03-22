@@ -96,18 +96,22 @@ const Header: React.FC = () => {
     {
       icon: <FacebookIcon sx={{ color: BLUE_GREEN }} />,
       href: "https://www.facebook.com/profile.php?id=100075628998773",
+      label: "Visit our Facebook page",
     },
     {
       icon: <InstagramIcon sx={{ color: MAGENTA }} />,
       href: "https://www.instagram.com/steel_builders_tech_eng_ltd/",
+      label: "Visit our Instagram page",
     },
     {
       icon: <FaTiktok style={{ color: BLUE_GREEN, fontSize: 24 }} />,
       href: "https://www.tiktok.com/@steelbuilderstech",
+      label: "Visit our TikTok page",
     },
     {
       icon: <YouTubeIcon style={{ color: MAGENTA, fontSize: 24 }} />,
       href: "https://www.youtube.com/@steel-builders-technical-e4768",
+      label: "Visit our YouTube channel",
     },
   ];
 
@@ -161,6 +165,9 @@ const Header: React.FC = () => {
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={social.label}
+            title={social.label}
+            sx={{ width: 44, height: 44 }}
           >
             {social.icon}
           </IconButton>
@@ -182,6 +189,9 @@ const Header: React.FC = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={social.label}
+                title={social.label}
+                sx={{ width: 44, height: 44 }}
               >
                 {social.icon}
               </IconButton>
@@ -228,7 +238,7 @@ const Header: React.FC = () => {
               <IconButton
                 edge="start"
                 color="inherit"
-                aria-label="menu"
+                aria-label="Open navigation menu"
                 onClick={toggleDrawer(true)}
                 sx={{
                   color: MAGENTA,

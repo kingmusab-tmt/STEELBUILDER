@@ -92,6 +92,8 @@ const TestimonialCard = styled(Card)(({ theme }) => ({
 export default function HomePageContent() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const accessibleHeadingTeal =
+    theme.palette.mode === "dark" ? BLUE_GREEN : "#006d6d";
   const [currentHeroImage, setCurrentHeroImage] = useState(0);
   const [heroImages, setHeroImages] = useState<HeroImage[]>([]);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
@@ -293,6 +295,7 @@ export default function HomePageContent() {
         {displayHeroImages.length > 1 && (
           <>
             <IconButton
+              aria-label="Show previous hero image"
               sx={{
                 position: "absolute",
                 left: 20,
@@ -312,6 +315,7 @@ export default function HomePageContent() {
               <NavigateBefore />
             </IconButton>
             <IconButton
+              aria-label="Show next hero image"
               sx={{
                 position: "absolute",
                 right: 20,
@@ -347,7 +351,11 @@ export default function HomePageContent() {
           >
             Steel Builders Technical Engineering Ltd
           </Typography>
-          <Typography variant="h5" sx={{ mb: 4, maxWidth: 800, mx: "auto" }}>
+          <Typography
+            variant="h5"
+            component="p"
+            sx={{ mb: 4, maxWidth: 800, mx: "auto" }}
+          >
             Leading experts in fabrication, installation, and maintenance of
             industrial machinery
           </Typography>
@@ -434,7 +442,7 @@ export default function HomePageContent() {
                 component="h2"
                 sx={{
                   mb: 3,
-                  color: BLUE_GREEN,
+                  color: accessibleHeadingTeal,
                   fontWeight: "bold",
                 }}
               >
@@ -469,7 +477,7 @@ export default function HomePageContent() {
                   py: 1.5,
                 }}
               >
-                Learn More
+                Learn More About Steel Builders
               </Button>
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
@@ -552,10 +560,10 @@ export default function HomePageContent() {
                   </Box>
                   <Typography
                     variant="h5"
-                    component="h5"
+                    component="h3"
                     sx={{
                       mb: 2,
-                      color: BLUE_GREEN,
+                      color: accessibleHeadingTeal,
                       fontWeight: "bold",
                       textAlign: "center",
                     }}
@@ -610,7 +618,7 @@ export default function HomePageContent() {
             sx={{
               textAlign: "center",
               mb: 2,
-              color: BLUE_GREEN,
+              color: accessibleHeadingTeal,
               fontWeight: "bold",
             }}
           >
@@ -645,7 +653,7 @@ export default function HomePageContent() {
                     {achievement.number}
                     {achievement.suffix || "+"}
                   </Typography>
-                  <Typography variant="h6" color="text.secondary">
+                  <Typography variant="h6" component="p" color="text.secondary">
                     {achievement.label}
                   </Typography>
                 </Box>
@@ -689,6 +697,7 @@ export default function HomePageContent() {
         </Typography>
         <Box sx={{ position: "relative" }}>
           <IconButton
+            aria-label="Scroll clients carousel left"
             sx={{
               position: "absolute",
               left: { xs: 4, md: -20 },
@@ -715,6 +724,7 @@ export default function HomePageContent() {
           </IconButton>
 
           <IconButton
+            aria-label="Scroll clients carousel right"
             sx={{
               position: "absolute",
               right: { xs: 4, md: -20 },
@@ -819,7 +829,7 @@ export default function HomePageContent() {
             sx={{
               textAlign: "center",
               mb: 2,
-              color: BLUE_GREEN,
+              color: accessibleHeadingTeal,
               fontWeight: "bold",
             }}
           >
@@ -835,6 +845,7 @@ export default function HomePageContent() {
           </Typography>
           <Box sx={{ position: "relative" }}>
             <IconButton
+              aria-label="Scroll testimonials carousel left"
               sx={{
                 position: "absolute",
                 left: { xs: 4, md: -20 },
@@ -861,6 +872,7 @@ export default function HomePageContent() {
             </IconButton>
 
             <IconButton
+              aria-label="Scroll testimonials carousel right"
               sx={{
                 position: "absolute",
                 right: { xs: 4, md: -20 },
@@ -926,7 +938,11 @@ export default function HomePageContent() {
                           }}
                         />
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                          <Typography
+                            variant="h6"
+                            component="p"
+                            sx={{ fontWeight: 600 }}
+                          >
                             {testimonial.name}
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
@@ -987,6 +1003,7 @@ export default function HomePageContent() {
 
           <Box sx={{ position: "relative" }}>
             <IconButton
+              aria-label="Scroll gallery carousel left"
               sx={{
                 position: "absolute",
                 left: { xs: 4, md: -20 },
@@ -1013,6 +1030,7 @@ export default function HomePageContent() {
             </IconButton>
 
             <IconButton
+              aria-label="Scroll gallery carousel right"
               sx={{
                 position: "absolute",
                 right: { xs: 4, md: -20 },
@@ -1105,7 +1123,11 @@ export default function HomePageContent() {
                       zIndex: 2,
                     }}
                   >
-                    <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                    <Typography
+                      variant="h6"
+                      component="p"
+                      sx={{ fontWeight: "bold" }}
+                    >
                       {item.title}
                     </Typography>
                   </Box>
@@ -1160,7 +1182,7 @@ export default function HomePageContent() {
           >
             Ready to Get Started?
           </Typography>
-          <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
+          <Typography variant="h6" component="p" sx={{ mb: 4, opacity: 0.9 }}>
             Contact us today for a free consultation and quote on our industrial
             machinery solutions.
           </Typography>
