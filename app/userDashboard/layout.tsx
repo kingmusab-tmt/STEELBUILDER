@@ -4,10 +4,20 @@ import { redirect } from "next/navigation";
 import React from "react";
 import connectDB from "@/utils/connectDB";
 import User from "@/models/user";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Dashboard - Steelbuilder",
   description: "User dashboard for Steelbuilder",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
 
 interface UserDashboardLayoutProps {

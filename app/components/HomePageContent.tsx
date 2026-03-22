@@ -121,7 +121,7 @@ export default function HomePageContent() {
         } else {
           console.error(
             "Failed to fetch achievements:",
-            await achievementRes.text()
+            await achievementRes.text(),
           );
         }
         if (clientRes.ok) setClients(await clientRes.json());
@@ -187,7 +187,7 @@ export default function HomePageContent() {
           }
         });
       },
-      { threshold: 0.3 } // Reduced threshold for better triggering
+      { threshold: 0.3 }, // Reduced threshold for better triggering
     );
 
     const achievementsSection = document.getElementById("achievements");
@@ -265,7 +265,7 @@ export default function HomePageContent() {
 
   const displayHeroImages = heroImages.length > 0 ? heroImages : [];
   const currentImage =
-    displayHeroImages[currentHeroImage]?.url || "/images/t7.jpg";
+    displayHeroImages[currentHeroImage]?.url || "/images/t7.webp";
 
   return (
     <Box>
@@ -305,7 +305,7 @@ export default function HomePageContent() {
               onClick={() =>
                 setCurrentHeroImage(
                   (currentHeroImage - 1 + displayHeroImages.length) %
-                    displayHeroImages.length
+                    displayHeroImages.length,
                 )
               }
             >
@@ -323,7 +323,7 @@ export default function HomePageContent() {
               }}
               onClick={() =>
                 setCurrentHeroImage(
-                  (currentHeroImage + 1) % displayHeroImages.length
+                  (currentHeroImage + 1) % displayHeroImages.length,
                 )
               }
             >
@@ -475,9 +475,11 @@ export default function HomePageContent() {
             <Grid size={{ xs: 12, md: 6 }}>
               <Box
                 sx={{
-                  height: 300,
+                  height: { xs: 220, sm: 300 },
                   borderRadius: 2,
-                  width: 400,
+                  width: { xs: "100%", sm: 400 },
+                  maxWidth: 400,
+                  m: "auto",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -489,8 +491,9 @@ export default function HomePageContent() {
                   src="/images/logo.png"
                   alt="Steel Builders Technical Engineering Team"
                   fill
+                  sizes="(max-width: 768px) 100vw, 400px"
                   style={{
-                    objectFit: "fill",
+                    objectFit: "contain",
                   }}
                 />
               </Box>
@@ -688,7 +691,7 @@ export default function HomePageContent() {
           <IconButton
             sx={{
               position: "absolute",
-              left: -20,
+              left: { xs: 4, md: -20 },
               top: "50%",
               transform: "translateY(-50%)",
               backgroundColor: theme.palette.background.paper,
@@ -701,7 +704,7 @@ export default function HomePageContent() {
             }}
             onClick={() => {
               const container = document.getElementById(
-                "clients-scroll-container"
+                "clients-scroll-container",
               );
               if (container) {
                 container.scrollBy({ left: -300, behavior: "smooth" });
@@ -714,7 +717,7 @@ export default function HomePageContent() {
           <IconButton
             sx={{
               position: "absolute",
-              right: -20,
+              right: { xs: 4, md: -20 },
               top: "50%",
               transform: "translateY(-50%)",
               backgroundColor: theme.palette.background.paper,
@@ -727,7 +730,7 @@ export default function HomePageContent() {
             }}
             onClick={() => {
               const container = document.getElementById(
-                "clients-scroll-container"
+                "clients-scroll-container",
               );
               if (container) {
                 container.scrollBy({ left: 300, behavior: "smooth" });
@@ -834,7 +837,7 @@ export default function HomePageContent() {
             <IconButton
               sx={{
                 position: "absolute",
-                left: -20,
+                left: { xs: 4, md: -20 },
                 top: "50%",
                 transform: "translateY(-50%)",
                 backgroundColor: theme.palette.background.paper,
@@ -847,7 +850,7 @@ export default function HomePageContent() {
               }}
               onClick={() => {
                 const container = document.getElementById(
-                  "testimonials-scroll-container"
+                  "testimonials-scroll-container",
                 );
                 if (container) {
                   container.scrollBy({ left: -350, behavior: "smooth" });
@@ -860,7 +863,7 @@ export default function HomePageContent() {
             <IconButton
               sx={{
                 position: "absolute",
-                right: -20,
+                right: { xs: 4, md: -20 },
                 top: "50%",
                 transform: "translateY(-50%)",
                 backgroundColor: theme.palette.background.paper,
@@ -873,7 +876,7 @@ export default function HomePageContent() {
               }}
               onClick={() => {
                 const container = document.getElementById(
-                  "testimonials-scroll-container"
+                  "testimonials-scroll-container",
                 );
                 if (container) {
                   container.scrollBy({ left: 350, behavior: "smooth" });
@@ -902,7 +905,7 @@ export default function HomePageContent() {
                 <Box
                   key={index}
                   sx={{
-                    minWidth: 380,
+                    minWidth: { xs: "85vw", sm: 380 },
                     // flexShrink: 0,
                   }}
                 >
@@ -986,7 +989,7 @@ export default function HomePageContent() {
             <IconButton
               sx={{
                 position: "absolute",
-                left: -20,
+                left: { xs: 4, md: -20 },
                 top: "50%",
                 transform: "translateY(-50%)",
                 backgroundColor: theme.palette.background.paper,
@@ -999,7 +1002,7 @@ export default function HomePageContent() {
               }}
               onClick={() => {
                 const gallery = document.getElementById(
-                  "gallery-scroll-container"
+                  "gallery-scroll-container",
                 );
                 if (gallery) {
                   gallery.scrollBy({ left: -300, behavior: "smooth" });
@@ -1012,7 +1015,7 @@ export default function HomePageContent() {
             <IconButton
               sx={{
                 position: "absolute",
-                right: -20,
+                right: { xs: 4, md: -20 },
                 top: "50%",
                 transform: "translateY(-50%)",
                 backgroundColor: theme.palette.background.paper,
@@ -1025,7 +1028,7 @@ export default function HomePageContent() {
               }}
               onClick={() => {
                 const gallery = document.getElementById(
-                  "gallery-scroll-container"
+                  "gallery-scroll-container",
                 );
                 if (gallery) {
                   gallery.scrollBy({ left: 300, behavior: "smooth" });
@@ -1077,6 +1080,7 @@ export default function HomePageContent() {
                     src={item.image}
                     alt={item.title}
                     fill
+                    sizes="300px"
                     style={{
                       objectFit: "cover",
                       objectPosition: "center",
@@ -1140,15 +1144,15 @@ export default function HomePageContent() {
         sx={{
           background: `linear-gradient(45deg, ${MAGENTA}, ${BLUE_GREEN})`,
           color: "white",
-          py: 8,
+
           textAlign: "center",
-          minHeight: "100vh",
+          minHeight: "50vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
         }}
       >
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <Typography
             variant="h3"
             component="h2"

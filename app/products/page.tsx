@@ -22,14 +22,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: "https://steelbuilders.com.ng/products",
+    url: "https://www.steelbuilderstechengltd.com.ng/products",
     siteName: "Steel Builders Technical Engineering Ltd",
     title: "Industrial Machinery Products Catalog",
     description:
       "Explore our range of industrial machinery products with detailed specifications and applications.",
     images: [
       {
-        url: "/images/t7.jpg",
+        url: "/images/t7.webp",
         width: 1200,
         height: 630,
         alt: "Steel Builders industrial machinery products",
@@ -42,9 +42,12 @@ export const metadata: Metadata = {
     description:
       "Browse industrial equipment and machinery products with full specifications.",
     images: {
-      url: "/images/t7.jpg",
+      url: "/images/t7.webp",
       alt: "Steel Builders products",
     },
+  },
+  alternates: {
+    canonical: "https://www.steelbuilderstechengltd.com.ng/products",
   },
 };
 

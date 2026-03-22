@@ -15,28 +15,28 @@ const DEFAULT_CLIENTS: Client[] = [
   {
     id: "1",
     name: "Client 1",
-    logo: "/images/t1.jpg",
+    logo: "/images/t1.webp",
     order: 1,
     createdAt: new Date().toISOString(),
   },
   {
     id: "2",
     name: "Client 2",
-    logo: "/images/t2.jpg",
+    logo: "/images/t2.webp",
     order: 2,
     createdAt: new Date().toISOString(),
   },
   {
     id: "3",
     name: "Client 3",
-    logo: "/images/t3.jpg",
+    logo: "/images/t3.webp",
     order: 3,
     createdAt: new Date().toISOString(),
   },
   {
     id: "4",
     name: "Client 4",
-    logo: "/images/t4.jpg",
+    logo: "/images/t4.webp",
     order: 4,
     createdAt: new Date().toISOString(),
   },
@@ -77,7 +77,7 @@ export function addClient(client: Omit<Client, "id" | "createdAt">): Client {
 
 export function updateClient(
   id: string,
-  updates: Partial<Client>
+  updates: Partial<Client>,
 ): Client | null {
   const clients = loadClients();
   const index = clients.findIndex((c) => c.id === id);

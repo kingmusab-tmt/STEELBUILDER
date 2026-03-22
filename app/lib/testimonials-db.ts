@@ -22,7 +22,7 @@ const DEFAULT_TESTIMONIALS: Testimonial[] = [
     message:
       "Steel Builders delivered our block molding machine on time and within budget. Their technical support team is exceptional.",
     rating: 5,
-    image: "/images/t1.jpg",
+    image: "/images/t1.webp",
     order: 1,
     createdAt: new Date().toISOString(),
   },
@@ -33,7 +33,7 @@ const DEFAULT_TESTIMONIALS: Testimonial[] = [
     message:
       "The quality of their fabrication work is outstanding. They have become our trusted partner for all industrial machinery needs.",
     rating: 5,
-    image: "/images/t2.jpg",
+    image: "/images/t2.webp",
     order: 2,
     createdAt: new Date().toISOString(),
   },
@@ -44,7 +44,7 @@ const DEFAULT_TESTIMONIALS: Testimonial[] = [
     message:
       "Excellent craftsmanship and attention to detail. We have completed multiple projects with Steel Builders with great results.",
     rating: 5,
-    image: "/images/t3.jpg",
+    image: "/images/t3.webp",
     order: 3,
     createdAt: new Date().toISOString(),
   },
@@ -72,7 +72,7 @@ export function saveTestimonials(testimonials: Testimonial[]): void {
 }
 
 export function addTestimonial(
-  testimonial: Omit<Testimonial, "id" | "createdAt">
+  testimonial: Omit<Testimonial, "id" | "createdAt">,
 ): Testimonial {
   const testimonials = loadTestimonials();
   const newTestimonial: Testimonial = {
@@ -87,7 +87,7 @@ export function addTestimonial(
 
 export function updateTestimonial(
   id: string,
-  updates: Partial<Testimonial>
+  updates: Partial<Testimonial>,
 ): Testimonial | null {
   const testimonials = loadTestimonials();
   const index = testimonials.findIndex((t) => t.id === id);

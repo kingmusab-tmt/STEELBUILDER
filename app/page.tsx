@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: "https://steelbuilders.com.ng",
+    url: "https://www.steelbuilderstechengltd.com.ng",
     siteName: "Steel Builders Technical Engineering Ltd",
     title:
       "Steel Builders Technical Engineering Ltd - Leading Industrial Machinery Manufacturer",
@@ -57,18 +57,18 @@ export const metadata: Metadata = {
       "Nigeria's premier manufacturer of industrial machinery. Specializing in block molding machines, stone crushers, and custom fabrication with 600+ projects and 800+ skilled engineers.",
     images: [
       {
-        url: "/images/t7.jpg",
+        url: "/images/t7.webp",
         width: 1200,
         height: 630,
         alt: "Steel Builders Technical Engineering Ltd - Industrial Machinery Manufacturing Facility",
-        type: "image/jpeg",
+        type: "image/webp",
       },
       {
-        url: "/images/t1.jpg",
+        url: "/images/t1.webp",
         width: 1200,
         height: 630,
         alt: "Steel Builders Industrial Projects and Machinery",
-        type: "image/jpeg",
+        type: "image/webp",
       },
     ],
   },
@@ -81,27 +81,23 @@ export const metadata: Metadata = {
     description:
       "Leading manufacturer of industrial machinery in Nigeria. 600+ projects, 190+ clients, 9+ years of excellence.",
     images: {
-      url: "/images/t7.jpg",
+      url: "/images/t7.webp",
       alt: "Steel Builders Technical Engineering Ltd Facility",
     },
   },
   alternates: {
-    canonical: "https://steelbuilders.com.ng",
+    canonical: "https://www.steelbuilderstechengltd.com.ng",
     languages: {
-      "en-NG": "https://steelbuilders.com.ng",
-      "en-US": "https://steelbuilders.com.ng",
+      "en-NG": "https://www.steelbuilderstechengltd.com.ng",
+      "en-US": "https://www.steelbuilderstechengltd.com.ng",
     },
-  },
-  verification: {
-    google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code",
   },
   other: {
     "geo.region": "NG-LA",
     "geo.placename": "Epe, Lagos State",
     "geo.position": "6.5795;3.9827",
-    "contact:phone_number": "+234 813 615 0837",
-    "contact:email": "steelbuilderseng@gmail.com",
+    "contact:phone_number": "+234 813 553 3480",
+    "contact:email": "steelbuilderstechnicalengineer@gmail.com",
   },
 };
 
@@ -109,20 +105,20 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://steelbuilders.com.ng",
+  "@id": "https://www.steelbuilderstechengltd.com.ng",
   name: "Steel Builders Technical Engineering Ltd",
   legalName: "Steel Builders Technical Engineering Ltd",
   description:
     "Leading industrial machinery manufacturer in Nigeria specializing in block molding machines, stone crushers, and custom fabrication.",
-  url: "https://steelbuilders.com.ng",
-  telephone: "+234 813 615 0837",
-  email: "steelbuilderseng@gmail.com",
-  logo: "https://steelbuilders.com.ng/images/logo.png",
-  image: "https://steelbuilders.com.ng/images/t7.jpg",
+  url: "https://www.steelbuilderstechengltd.com.ng",
+  telephone: "+234 813 553 3480",
+  email: "steelbuilderstechnicalengineer@gmail.com",
+  logo: "https://www.steelbuilderstechengltd.com.ng/images/logo.png",
+  image: "https://www.steelbuilderstechengltd.com.ng/images/t7.webp",
   foundingDate: "2015",
   numberOfEmployees: {
     "@type": "QuantitativeValue",
-    value: "800+",
+    value: 800,
   },
   priceRange: "NGN1500000-NGN50000000",
   address: {
@@ -164,8 +160,8 @@ const jsonLd = {
       },
     },
     {
-      "@type": "State",
-      name: "Abuja",
+      "@type": "AdministrativeArea",
+      name: "Federal Capital Territory",
       address: {
         "@type": "Country",
         name: "NG",
@@ -185,30 +181,23 @@ const jsonLd = {
   contactPoint: [
     {
       "@type": "ContactPoint",
-      telephone: "+234 813 615 0837",
+      telephone: "+234 813 553 3480",
       contactType: "Sales",
-      email: "steelbuilderseng@gmail.com",
+      email: "steelbuilderstechnicalengineer@gmail.com",
       areaServed: "NG",
       availableLanguage: ["en"],
     },
     {
       "@type": "ContactPoint",
-      telephone: "+234 813 615 0837",
+      telephone: "+234 813 553 3480",
       contactType: "Support",
-      email: "steelbuilderseng@gmail.com",
+      email: "steelbuilderstechnicalengineer@gmail.com",
     },
   ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "190",
-    bestRating: "5",
-    worstRating: "1",
-  },
   potentialAction: {
     "@type": "TradeAction",
     name: "Request Quote",
-    target: "https://steelbuilders.com.ng/quote",
+    target: "https://www.steelbuilderstechengltd.com.ng/quote",
   },
 };
 

@@ -93,7 +93,7 @@ export default function ProductsPageContent() {
       filtered = filtered.filter(
         (p) =>
           p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          p.description.toLowerCase().includes(searchTerm.toLowerCase())
+          p.description.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
@@ -114,9 +114,9 @@ export default function ProductsPageContent() {
   };
 
   const handleWhatsApp = (product: Product) => {
-    const phoneNumber = "2348100000000"; // Replace with actual WhatsApp number
+    const phoneNumber = "+2348135533480"; // Replace with actual WhatsApp number
     const message = encodeURIComponent(
-      `Hello, I'm interested in the ${product.name}. Could you please provide more information about pricing and availability?`
+      `Hello, I'm interested in the ${product.name}. Could you please provide more information about pricing and availability?`,
     );
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, "_blank");
@@ -142,11 +142,11 @@ ${product.applications.map((a) => `- ${a}`).join("\n")}
     const element = document.createElement("a");
     element.setAttribute(
       "href",
-      "data:text/plain;charset=utf-8," + encodeURIComponent(specs)
+      "data:text/plain;charset=utf-8," + encodeURIComponent(specs),
     );
     element.setAttribute(
       "download",
-      `${product.name.replace(/\s+/g, "_")}.txt`
+      `${product.name.replace(/\s+/g, "_")}.txt`,
     );
     element.style.display = "none";
     document.body.appendChild(element);
@@ -323,7 +323,6 @@ ${product.applications.map((a) => `- ${a}`).join("\n")}
                   <Box sx={{ p: 2, pt: 0, display: "flex", gap: 1 }}>
                     <Button
                       variant="contained"
-                      fullWidth
                       size="small"
                       onClick={() => handleProductClick(product)}
                       sx={{

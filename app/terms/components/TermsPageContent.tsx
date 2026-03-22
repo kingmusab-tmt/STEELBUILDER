@@ -21,11 +21,11 @@ const termsSchema = {
   name: "Terms of Service",
   description:
     "Steel Builders Technical Engineering Ltd terms and conditions for using our products and services",
-  url: "https://steelbuilders.com.ng/terms",
+  url: "https://www.steelbuilderstechengltd.com.ng/terms",
   isPartOf: {
     "@type": "WebSite",
     name: "Steel Builders Technical Engineering Ltd",
-    url: "https://steelbuilders.com.ng",
+    url: "https://www.steelbuilderstechengltd.com.ng",
   },
   inLanguage: "en-NG",
   datePublished: "2024-01-01",
@@ -198,8 +198,8 @@ export default function TermsPageContent() {
       title: "15. Contact Information",
       content: "For questions about these Terms of Service, please contact us:",
       items: [
-        "Email: steelbuilderseng@gmail.com",
-        "Phone: +234 813 615 0837",
+        "Email: steelbuilderstechnicalengineer@gmail.com",
+        "Phone: +234 813 553 3480, +234 814 534 9351",
         "Address: Epe Industrial Area, Lagos, Nigeria 106101",
         "Business Hours: Monday - Saturday, 8:00 AM - 6:00 PM WAT",
       ],

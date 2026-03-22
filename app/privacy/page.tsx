@@ -19,17 +19,34 @@ export const metadata: Metadata = {
     "data handling policy",
   ],
   openGraph: {
+    type: "website",
+    locale: "en_NG",
+    url: "https://www.steelbuilderstechengltd.com.ng/privacy",
+    siteName: "Steel Builders Technical Engineering Ltd",
     title: "Privacy Policy | Steel Builders Technical Engineering Ltd",
     description:
       "Our commitment to protecting your privacy and personal information. Learn about our data collection and security practices.",
     images: [
       {
-        url: "/images/t7.jpg",
+        url: "/images/t7.webp",
         width: 1200,
         height: 630,
         alt: "Steel Builders Privacy Policy",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Steel Builders Technical Engineering Ltd",
+    description:
+      "Learn how Steel Builders collects, protects, and manages your personal information.",
+    images: {
+      url: "/images/t7.webp",
+      alt: "Steel Builders Privacy Policy",
+    },
+  },
+  alternates: {
+    canonical: "https://www.steelbuilderstechengltd.com.ng/privacy",
   },
 };
 

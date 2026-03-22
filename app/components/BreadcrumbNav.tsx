@@ -53,7 +53,7 @@ export default function BreadcrumbNav() {
       "@type": "ListItem",
       position: index + 1,
       name: crumb.name,
-      item: `https://steelbuilders.com.ng${crumb.path}`,
+      item: `https://www.steelbuilderstechengltd.com.ng${crumb.path}`,
     })),
   };
 

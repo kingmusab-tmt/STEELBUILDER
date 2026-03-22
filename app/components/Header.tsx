@@ -18,15 +18,15 @@ import {
 import {
   Menu as MenuIcon,
   Facebook as FacebookIcon,
-  Twitter as TwitterIcon,
   Instagram as InstagramIcon,
-  LinkedIn as LinkedInIcon,
+  YouTube as YouTubeIcon,
 } from "@mui/icons-material";
+
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
 import { MAGENTA, BLUE_GREEN } from "../theme/theme";
-
+import { FaTiktok } from "react-icons/fa";
 // Styled components
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -93,10 +93,22 @@ const Header: React.FC = () => {
   ];
 
   const socialIcons = [
-    { icon: <FacebookIcon sx={{ color: BLUE_GREEN }} />, href: "#" },
-    { icon: <TwitterIcon sx={{ color: BLUE_GREEN }} />, href: "#" },
-    { icon: <InstagramIcon sx={{ color: MAGENTA }} />, href: "#" },
-    { icon: <LinkedInIcon sx={{ color: BLUE_GREEN }} />, href: "#" },
+    {
+      icon: <FacebookIcon sx={{ color: BLUE_GREEN }} />,
+      href: "https://www.facebook.com/profile.php?id=100075628998773",
+    },
+    {
+      icon: <InstagramIcon sx={{ color: MAGENTA }} />,
+      href: "https://www.instagram.com/steel_builders_tech_eng_ltd/",
+    },
+    {
+      icon: <FaTiktok style={{ color: BLUE_GREEN, fontSize: 24 }} />,
+      href: "https://www.tiktok.com/@steelbuilderstech",
+    },
+    {
+      icon: <YouTubeIcon style={{ color: MAGENTA, fontSize: 24 }} />,
+      href: "https://www.youtube.com/@steel-builders-technical-e4768",
+    },
   ];
 
   const toggleDrawer = (open: boolean) => () => {
@@ -142,7 +154,14 @@ const Header: React.FC = () => {
       </List>
       <Box sx={{ display: "flex", justifyContent: "center", gap: 2, py: 2 }}>
         {socialIcons.map((social, index) => (
-          <IconButton key={index} size="small">
+          <IconButton
+            key={index}
+            size="small"
+            component="a"
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {social.icon}
           </IconButton>
         ))}
@@ -157,7 +176,13 @@ const Header: React.FC = () => {
           {/* Social Media Icons (Left on desktop, hidden on mobile) */}
           <SocialIconsContainer>
             {socialIcons.map((social, index) => (
-              <IconButton key={index} size="small" href={social.href}>
+              <IconButton
+                key={index}
+                size="small"
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {social.icon}
               </IconButton>
             ))}

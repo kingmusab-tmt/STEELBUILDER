@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title:
     "Contact Us | Steel Builders Technical Engineering Ltd - Get in Touch for Industrial Machinery Solutions",
   description:
-    "Contact Steel Builders Technical Engineering Ltd for industrial machinery solutions. Visit us at Epe, Lagos State, Nigeria. Call +234 813 615 0837 or email steelbuilderseng@gmail.com. Get quotes for block molding machines, stone crushers, and custom fabrication.",
+    "Contact Steel Builders Technical Engineering Ltd for industrial machinery solutions. Visit us at Local Government, Epe along epe-ikorodu road behind conoil filling station lagos Nigeria Epe, Lagos 105101, Lagos. Call +234 813 553 3480, +234 814 534 9351 or email steelbuilderstechnicalengineer@gmail.com. Get quotes for block molding machines, stone crushers, and custom fabrication.",
   keywords: [
     "contact Steel Builders Nigeria",
     "industrial machinery quote Lagos",
@@ -46,19 +46,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: "https://steelbuilders.com.ng/contact",
+    url: "https://www.steelbuilderstechengltd.com.ng/contact",
     siteName: "Steel Builders Technical Engineering Ltd",
     title:
       "Contact Steel Builders Technical Engineering Ltd - Industrial Machinery Experts in Lagos, Nigeria",
     description:
-      "Get in touch with Steel Builders Technical Engineering Ltd for industrial machinery solutions. Located in Epe, Lagos State. Call +234 813 615 0837 for block molding machines, stone crushers, and custom fabrication services.",
+      "Get in touch with Steel Builders Technical Engineering Ltd for industrial machinery solutions. Located in Epe, Lagos State. Call +234 813 553 3480, +234 814 534 9351 for block molding machines, stone crushers, and custom fabrication services.",
     images: [
       {
-        url: "/images/t7.jpg",
+        url: "/images/t7.webp",
         width: 1200,
         height: 630,
         alt: "Steel Builders Technical Engineering Ltd - Contact Our Industrial Machinery Experts",
-        type: "image/jpeg",
+        type: "image/webp",
       },
     ],
   },
@@ -69,29 +69,25 @@ export const metadata: Metadata = {
     title:
       "Contact Steel Builders Technical Engineering Ltd - Industrial Machinery Solutions",
     description:
-      "Reach out to Steel Builders for industrial machinery solutions. Epe, Lagos State, Nigeria. Call +234 813 615 0837 for quotes and consultations.",
+      "Reach out to Steel Builders for industrial machinery solutions. Local Government, Epe along epe-ikorodu road behind conoil filling station lagos Nigeria Epe, Lagos 105101, Lagos. Call +234 813 553 3480, +234 814 534 9351 for quotes and consultations.",
     images: {
-      url: "/images/t7.jpg",
+      url: "/images/t7.webp",
       alt: "Steel Builders Technical Engineering Ltd Contact",
     },
   },
   alternates: {
-    canonical: "https://steelbuilders.com.ng/contact",
+    canonical: "https://www.steelbuilderstechengltd.com.ng/contact",
     languages: {
-      "en-NG": "https://steelbuilders.com.ng/contact",
-      "en-US": "https://steelbuilders.com.ng/contact",
+      "en-NG": "https://www.steelbuilderstechengltd.com.ng/contact",
+      "en-US": "https://www.steelbuilderstechengltd.com.ng/contact",
     },
-  },
-  verification: {
-    google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code",
   },
   other: {
     "geo.region": "NG-LA",
     "geo.placename": "Epe, Lagos State",
     "geo.position": "6.5795;3.9827",
-    "contact:phone_number": "+234 813 615 0837",
-    "contact:email": "steelbuilderseng@gmail.com",
+    "contact:phone_number": "+234 813 553 3480, +234 814 534 9351",
+    "contact:email": "steelbuilderstechnicalengineer@gmail.com",
     "contact:street_address": "Epe",
     "contact:locality": "Lagos State",
     "contact:country_name": "Nigeria",

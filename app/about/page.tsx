@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: "https://steelbuilders.com.ng/about",
+    url: "https://www.steelbuilderstechengltd.com.ng/about",
     siteName: "Steel Builders Technical Engineering Ltd",
     title:
       "About Steel Builders Technical Engineering Ltd - Nigeria's Leading Industrial Machinery Manufacturer",
@@ -54,18 +54,18 @@ export const metadata: Metadata = {
       "Discover Steel Builders Technical Engineering Ltd, Nigeria's premier manufacturer of industrial machinery. Specializing in block molding machines, stone crushers, and custom fabrication with 9+ years of excellence, 600+ projects, and 800+ skilled engineers.",
     images: [
       {
-        url: "/images/t7.jpg",
+        url: "/images/t7.webp",
         width: 1200,
         height: 630,
         alt: "Steel Builders Technical Engineering Ltd - Industrial Machinery Manufacturing Facility",
-        type: "image/jpeg",
+        type: "image/webp",
       },
       {
-        url: "/images/t1.jpg",
+        url: "/images/t1.webp",
         width: 1200,
         height: 630,
         alt: "Steel Builders Industrial Projects and Machinery",
-        type: "image/jpeg",
+        type: "image/webp",
       },
     ],
   },
@@ -78,20 +78,16 @@ export const metadata: Metadata = {
     description:
       "Nigeria's leading manufacturer of industrial machinery. We fabricate, install, and maintain block molding machines, stone crushers, and industrial equipment. 9+ years of excellence.",
     images: {
-      url: "/images/t7.jpg",
+      url: "/images/t7.webp",
       alt: "Steel Builders Technical Engineering Ltd Facility",
     },
   },
   alternates: {
-    canonical: "https://steelbuilders.com.ng/about",
+    canonical: "https://www.steelbuilderstechengltd.com.ng/about",
     languages: {
-      "en-NG": "https://steelbuilders.com.ng/about",
-      "en-US": "https://steelbuilders.com.ng/about",
+      "en-NG": "https://www.steelbuilderstechengltd.com.ng/about",
+      "en-US": "https://www.steelbuilderstechengltd.com.ng/about",
     },
-  },
-  verification: {
-    google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code",
   },
   other: {
     "geo.region": "NG-LA",

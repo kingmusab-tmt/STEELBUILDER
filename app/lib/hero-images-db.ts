@@ -14,77 +14,77 @@ interface HeroImage {
 const DEFAULT_HERO_IMAGES: HeroImage[] = [
   {
     id: "1",
-    url: "/images/t7.jpg",
+    url: "/images/t7.webp",
     title: "Hero Image 1",
     order: 1,
     createdAt: new Date().toISOString(),
   },
   {
     id: "2",
-    url: "/images/t8.jpg",
+    url: "/images/t8.webp",
     title: "Hero Image 2",
     order: 2,
     createdAt: new Date().toISOString(),
   },
   {
     id: "3",
-    url: "/images/t9.jpg",
+    url: "/images/t9.webp",
     title: "Hero Image 3",
     order: 3,
     createdAt: new Date().toISOString(),
   },
   {
     id: "4",
-    url: "/images/t10.jpg",
+    url: "/images/t10.webp",
     title: "Hero Image 4",
     order: 4,
     createdAt: new Date().toISOString(),
   },
   {
     id: "5",
-    url: "/images/t11.jpg",
+    url: "/images/t11.webp",
     title: "Hero Image 5",
     order: 5,
     createdAt: new Date().toISOString(),
   },
   {
     id: "6",
-    url: "/images/t12.jpg",
+    url: "/images/t12.webp",
     title: "Hero Image 6",
     order: 6,
     createdAt: new Date().toISOString(),
   },
   {
     id: "7",
-    url: "/images/t13.jpg",
+    url: "/images/t13.webp",
     title: "Hero Image 7",
     order: 7,
     createdAt: new Date().toISOString(),
   },
   {
     id: "8",
-    url: "/images/t14.jpg",
+    url: "/images/t14.webp",
     title: "Hero Image 8",
     order: 8,
     createdAt: new Date().toISOString(),
   },
   {
     id: "9",
-    url: "/images/t15.jpg",
+    url: "/images/t15.webp",
     title: "Hero Image 9",
     order: 9,
     createdAt: new Date().toISOString(),
   },
   {
     id: "10",
-    url: "/images/t16.jpg",
+    url: "/images/t16.webp",
     title: "Hero Image 10",
     order: 10,
     createdAt: new Date().toISOString(),
   },
   {
     id: "11",
-    url: "/images/t17.jpg",
+    url: "/images/t17.webp",
     title: "Hero Image 11",
     order: 11,
     createdAt: new Date().toISOString(),
@@ -113,7 +113,7 @@ export function saveHeroImages(images: HeroImage[]): void {
 }
 
 export function addHeroImage(
-  image: Omit<HeroImage, "id" | "createdAt">
+  image: Omit<HeroImage, "id" | "createdAt">,
 ): HeroImage {
   const images = loadHeroImages();
   const newImage: HeroImage = {
@@ -128,7 +128,7 @@ export function addHeroImage(
 
 export function updateHeroImage(
   id: string,
-  updates: Partial<HeroImage>
+  updates: Partial<HeroImage>,
 ): HeroImage | null {
   const images = loadHeroImages();
   const index = images.findIndex((img) => img.id === id);

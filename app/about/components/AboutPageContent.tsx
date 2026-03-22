@@ -113,21 +113,21 @@ export default function AboutPageContent() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "@id": "https://steelbuilders.com.ng/#organization",
+            "@id": "https://www.steelbuilderstechengltd.com.ng/#organization",
             name: "Steel Builders Technical Engineering Ltd",
             alternateName: "Steel Builders",
             description:
               "Leading manufacturer of industrial machinery in Nigeria, specializing in fabrication, installation, and maintenance of block molding machines, stone crushers, and industrial equipment.",
-            url: "https://steelbuilders.com.ng",
+            url: "https://www.steelbuilderstechengltd.com.ng",
             logo: {
               "@type": "ImageObject",
-              url: "https://steelbuilders.com.ng/images/logo.png",
+              url: "https://www.steelbuilderstechengltd.com.ng/images/logo.png",
               width: "250",
               height: "60",
             },
             image: [
-              "https://steelbuilders.com.ng/images/t7.jpg",
-              "https://steelbuilders.com.ng/images/t1.jpg",
+              "https://www.steelbuilderstechengltd.com.ng/images/t7.webp",
+              "https://www.steelbuilderstechengltd.com.ng/images/t1.webp",
             ],
             address: {
               "@type": "PostalAddress",
@@ -213,13 +213,13 @@ export default function AboutPageContent() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://steelbuilders.com.ng/",
+                item: "https://www.steelbuilderstechengltd.com.ng/",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "About Us",
-                item: "https://steelbuilders.com.ng/about",
+                item: "https://www.steelbuilderstechengltd.com.ng/about",
               },
             ],
           }),
@@ -345,7 +345,7 @@ export default function AboutPageContent() {
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 style={{
-                  objectFit: "cover",
+                  objectFit: "contain",
                 }}
                 priority
               />
@@ -554,7 +554,7 @@ export default function AboutPageContent() {
                 }}
               >
                 <Image
-                  src="/images/t32.jpg"
+                  src="/images/t32.webp"
                   alt="Steel Builders industrial machinery projects showcasing block molding machines and equipment"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -671,7 +671,8 @@ export default function AboutPageContent() {
                   Behind Conoil Filling Station
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                  Epe, Lagos State, Nigeria
+                  Local Government, Epe along epe-ikorodu road behind conoil
+                  filling station lagos Nigeria Epe, Lagos 105101, Lagos
                 </Typography>
               </Paper>
             </Grid>

@@ -31,17 +31,17 @@ import { MAGENTA, BLUE_GREEN, GOLD, LIGHT_MAGENTA } from "./theme/theme";
 
 // Hero background images (replace with your actual images)
 const heroImages = [
-  "/images/t7.jpg",
-  "/images/t8.jpg",
-  "/images/t9.jpg",
-  "/images/t10.jpg",
-  "/images/t11.jpg",
-  "/images/t12.jpg",
-  "/images/t13.jpg",
-  "/images/t14.jpg",
-  "/images/t15.jpg",
-  "/images/t16.jpg",
-  "/images/t17.jpg",
+  "/images/t7.webp",
+  "/images/t8.webp",
+  "/images/t9.webp",
+  "/images/t10.webp",
+  "/images/t11.webp",
+  "/images/t12.webp",
+  "/images/t13.webp",
+  "/images/t14.webp",
+  "/images/t15.webp",
+  "/images/t16.webp",
+  "/images/t17.webp",
 ];
 
 export default function Home() {
@@ -89,7 +89,7 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     const achievementsSection = document.getElementById("achievements");
@@ -165,12 +165,12 @@ export default function Home() {
   ];
 
   const galleryItems = [
-    { image: "/images/t1.jpg", title: "Industrial Machinery Fabrication" },
-    { image: "/images/t2.jpg", title: "Precision Cutting Workshop" },
-    { image: "/images/t3.jpg", title: "Large Scale Installation" },
-    { image: "/images/t4.jpg", title: "Custom Steel Components" },
-    { image: "/images/t5.jpg", title: "Quality Control Process" },
-    { image: "/images/t6.jpg", title: "Finished Product Showcase" },
+    { image: "/images/t1.webp", title: "Industrial Machinery Fabrication" },
+    { image: "/images/t2.webp", title: "Precision Cutting Workshop" },
+    { image: "/images/t3.webp", title: "Large Scale Installation" },
+    { image: "/images/t4.webp", title: "Custom Steel Components" },
+    { image: "/images/t5.webp", title: "Quality Control Process" },
+    { image: "/images/t6.webp", title: "Finished Product Showcase" },
   ];
 
   return (
@@ -207,7 +207,7 @@ export default function Home() {
           }}
           onClick={() =>
             setCurrentHeroImage(
-              (currentHeroImage - 1 + heroImages.length) % heroImages.length
+              (currentHeroImage - 1 + heroImages.length) % heroImages.length,
             )
           }
         >
@@ -398,7 +398,7 @@ export default function Home() {
                     target.style.display = "none";
                     // Show the fallback icon
                     const fallback = document.querySelector(
-                      ".about-fallback"
+                      ".about-fallback",
                     ) as HTMLElement;
                     if (fallback) {
                       fallback.style.display = "block";
@@ -623,7 +623,7 @@ export default function Home() {
             }}
             onClick={() => {
               const gallery = document.getElementById(
-                "gallery-scroll-container"
+                "gallery-scroll-container",
               );
               if (gallery) {
                 gallery.scrollBy({ left: -300, behavior: "smooth" });
@@ -650,7 +650,7 @@ export default function Home() {
             }}
             onClick={() => {
               const gallery = document.getElementById(
-                "gallery-scroll-container"
+                "gallery-scroll-container",
               );
               if (gallery) {
                 gallery.scrollBy({ left: 300, behavior: "smooth" });

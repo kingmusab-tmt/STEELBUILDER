@@ -21,12 +21,12 @@ export default function SingleProductSchema({
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": `https://steelbuilders.com.ng/products#${product.id}`,
+    "@id": `https://www.steelbuilderstechengltd.com.ng/products#${product.id}`,
     name: product.name,
     description: product.description,
     image: product.image.startsWith("http")
       ? product.image
-      : `https://steelbuilders.com.ng${product.image}`,
+      : `https://www.steelbuilderstechengltd.com.ng${product.image}`,
     category: product.category,
     brand: {
       "@type": "Brand",
@@ -35,8 +35,8 @@ export default function SingleProductSchema({
     manufacturer: {
       "@type": "Organization",
       name: "Steel Builders Technical Engineering Ltd",
-      url: "https://steelbuilders.com.ng",
-      logo: "https://steelbuilders.com.ng/images/logo.png",
+      url: "https://www.steelbuilderstechengltd.com.ng",
+      logo: "https://www.steelbuilderstechengltd.com.ng/images/logo.png",
     },
     offers: {
       "@type": "AggregateOffer",
@@ -47,11 +47,11 @@ export default function SingleProductSchema({
       priceValidUntil: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
         .toISOString()
         .split("T")[0],
-      url: "https://steelbuilders.com.ng/quote",
+      url: "https://www.steelbuilderstechengltd.com.ng/quote",
       seller: {
         "@type": "Organization",
         name: "Steel Builders Technical Engineering Ltd",
-        url: "https://steelbuilders.com.ng",
+        url: "https://www.steelbuilderstechengltd.com.ng",
       },
     },
     aggregateRating: {

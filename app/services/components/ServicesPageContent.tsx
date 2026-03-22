@@ -232,8 +232,8 @@ export default function ServicesPageContent() {
                     index % 3 === 0
                       ? MAGENTA
                       : index % 3 === 1
-                      ? BLUE_GREEN
-                      : GOLD
+                        ? BLUE_GREEN
+                        : GOLD
                   }`,
                   "&:hover": {
                     transform: "translateY(-10px)",
@@ -385,7 +385,7 @@ export default function ServicesPageContent() {
               }}
             >
               <Image
-                src="/images/t34.jpg"
+                src="/images/t34.webp"
                 alt="Steel Builders manufacturing facility with advanced machinery and equipment"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"

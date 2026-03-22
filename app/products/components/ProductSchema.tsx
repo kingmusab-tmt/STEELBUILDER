@@ -25,12 +25,12 @@ export default function ProductSchema({ products }: ProductSchemaProps) {
       position: index + 1,
       item: {
         "@type": "Product",
-        "@id": `https://steelbuilders.com.ng/products#${product.id}`,
+        "@id": `https://www.steelbuilderstechengltd.com.ng/products#${product.id}`,
         name: product.name,
         description: product.description,
         image: product.image.startsWith("http")
           ? product.image
-          : `https://steelbuilders.com.ng${product.image}`,
+          : `https://www.steelbuilderstechengltd.com.ng${product.image}`,
         category: product.category,
         brand: {
           "@type": "Brand",
@@ -39,7 +39,7 @@ export default function ProductSchema({ products }: ProductSchemaProps) {
         manufacturer: {
           "@type": "Organization",
           name: "Steel Builders Technical Engineering Ltd",
-          url: "https://steelbuilders.com.ng",
+          url: "https://www.steelbuilderstechengltd.com.ng",
         },
         offers: {
           "@type": "AggregateOffer",
@@ -49,7 +49,7 @@ export default function ProductSchema({ products }: ProductSchemaProps) {
           offerCount: 1,
           offers: {
             "@type": "Offer",
-            url: "https://steelbuilders.com.ng/quote",
+            url: "https://www.steelbuilderstechengltd.com.ng/quote",
             priceCurrency: "NGN",
             availability: "https://schema.org/InStock",
             priceValidUntil: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)

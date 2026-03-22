@@ -4,6 +4,7 @@ import React from "react";
 import {
   Box,
   Container,
+  Grid,
   Typography,
   Accordion,
   AccordionSummary,
@@ -96,7 +97,7 @@ export default function FAQSection() {
   return (
     <Box sx={{ py: 8, backgroundColor: "#f5f5f5" }}>
       <FAQSchema />
-      <Container maxWidth="md">
+      <Container maxWidth="xl">
         <Typography
           variant="h2"
           component="h2"
@@ -122,59 +123,68 @@ export default function FAQSection() {
           services, and support.
         </Typography>
 
-        {FAQList.map((item, index) => (
-          <Accordion
-            key={index}
-            sx={{
-              mb: 2,
-              "&:before": { display: "none" },
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-              borderRadius: "8px !important",
-              "&.Mui-expanded": {
-                margin: "0 0 16px 0",
-              },
-            }}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMore sx={{ color: MAGENTA }} />}
-              sx={{
-                backgroundColor: "white",
-                borderRadius: "8px",
-                "&.Mui-expanded": {
-                  borderBottomLeftRadius: 0,
-                  borderBottomRightRadius: 0,
-                },
-              }}
-            >
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: "600",
-                  color: MAGENTA,
-                  fontSize: { xs: "1rem", md: "1.1rem" },
-                }}
-              >
-                {item.question}
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails
-              sx={{
-                backgroundColor: "white",
-                borderTop: `1px solid ${BLUE_GREEN}20`,
-              }}
-            >
-              <Typography
-                variant="body1"
-                sx={{
-                  color: "text.primary",
-                  lineHeight: 1.8,
-                }}
-              >
-                {item.answer}
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        ))}
+        <Grid container spacing={3}>
+          {[
+            FAQList.slice(0, Math.ceil(FAQList.length / 2)),
+            FAQList.slice(Math.ceil(FAQList.length / 2)),
+          ].map((column, colIndex) => (
+            <Grid key={colIndex} size={{ xs: 12, md: 6 }}>
+              {column.map((item, index) => (
+                <Accordion
+                  key={index}
+                  sx={{
+                    mb: 2,
+                    "&:before": { display: "none" },
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                    borderRadius: "8px !important",
+                    "&.Mui-expanded": {
+                      margin: "0 0 16px 0",
+                    },
+                  }}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMore sx={{ color: MAGENTA }} />}
+                    sx={{
+                      backgroundColor: "white",
+                      borderRadius: "8px",
+                      "&.Mui-expanded": {
+                        borderBottomLeftRadius: 0,
+                        borderBottomRightRadius: 0,
+                      },
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: "600",
+                        color: MAGENTA,
+                        fontSize: { xs: "1rem", md: "1.1rem" },
+                      }}
+                    >
+                      {item.question}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails
+                    sx={{
+                      backgroundColor: "white",
+                      borderTop: `1px solid ${BLUE_GREEN}20`,
+                    }}
+                  >
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: "text.primary",
+                        lineHeight: 1.8,
+                      }}
+                    >
+                      {item.answer}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </Grid>
+          ))}
+        </Grid>
 
         <Box sx={{ mt: 6, textAlign: "center" }}>
           <Typography variant="body1" sx={{ mb: 2 }}>
@@ -186,14 +196,14 @@ export default function FAQSection() {
               href="tel:+2348136150837"
               style={{ color: BLUE_GREEN, textDecoration: "none" }}
             >
-              +234 813 615 0837
+              +234 813 553 3480, +234 814 534 9351
             </a>{" "}
             or{" "}
             <a
-              href="mailto:steelbuilderseng@gmail.com"
+              href="mailto:steelbuilderstechnicalengineer@gmail.com"
               style={{ color: BLUE_GREEN, textDecoration: "none" }}
             >
-              steelbuilderseng@gmail.com
+              steelbuilderstechnicalengineer@gmail.com
             </a>
           </Typography>
         </Box>

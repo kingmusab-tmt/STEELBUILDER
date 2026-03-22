@@ -171,7 +171,7 @@ export default function QuotePageContent() {
   ];
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value, type } = e.target as HTMLInputElement;
     setFormData((prev) => ({
@@ -292,7 +292,7 @@ Timestamp: ${new Date().toLocaleString("en-NG")}
     try {
       const message = generateWhatsAppMessage();
       const encodedMessage = encodeURIComponent(message);
-      const whatsappNumber = "2348136150837"; // Company WhatsApp number
+      const whatsappNumber = "+2348135533480"; // Company WhatsApp number
 
       // Open WhatsApp with pre-filled message
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
@@ -544,7 +544,7 @@ Timestamp: ${new Date().toLocaleString("en-NG")}
                         control={
                           <Checkbox
                             checked={formData.requirements.includes(
-                              requirement
+                              requirement,
                             )}
                             onChange={() =>
                               handleRequirementChange(requirement)
@@ -750,7 +750,7 @@ Timestamp: ${new Date().toLocaleString("en-NG")}
                     color: MAGENTA,
                   }}
                 >
-                  WhatsApp: +234 813 615 0837
+                  WhatsApp: +234 813 553 3480
                 </Typography>
                 <Typography
                   variant="body2"
@@ -760,7 +760,7 @@ Timestamp: ${new Date().toLocaleString("en-NG")}
                     color: BLUE_GREEN,
                   }}
                 >
-                  Email: steelbuilderseng@gmail.com
+                  Email: steelbuilderstechnicalengineer@gmail.com
                 </Typography>
               </CardContent>
             </Card>

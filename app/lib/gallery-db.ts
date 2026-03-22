@@ -45,37 +45,37 @@ function getDefaultGallery(): GalleryItem[] {
     {
       id: "gallery-1",
       title: "Industrial Block Molding Machine in Action",
-      image: "/images/t7.jpg",
+      image: "/images/t7.webp",
       createdAt: new Date().toISOString(),
     },
     {
       id: "gallery-2",
       title: "Stone Crusher Manufacturing Facility",
-      image: "/images/t1.jpg",
+      image: "/images/t1.webp",
       createdAt: new Date().toISOString(),
     },
     {
       id: "gallery-3",
       title: "Completed Paving Stone Project",
-      image: "/images/t7.jpg",
+      image: "/images/t7.webp",
       createdAt: new Date().toISOString(),
     },
     {
       id: "gallery-4",
       title: "Custom Fabrication Workshop",
-      image: "/images/t1.jpg",
+      image: "/images/t1.webp",
       createdAt: new Date().toISOString(),
     },
     {
       id: "gallery-5",
       title: "Block Molding Machine Installation",
-      image: "/images/t7.jpg",
+      image: "/images/t7.webp",
       createdAt: new Date().toISOString(),
     },
     {
       id: "gallery-6",
       title: "Industrial Equipment Assembly",
-      image: "/images/t1.jpg",
+      image: "/images/t1.webp",
       createdAt: new Date().toISOString(),
     },
   ];

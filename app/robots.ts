@@ -31,7 +31,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/",
       },
     ],
-    sitemap: "https://steelbuilders.com.ng/sitemap.xml",
-    host: "https://steelbuilders.com.ng",
+    sitemap: "https://www.steelbuilderstechengltd.com.ng/sitemap.xml",
+    host: "https://www.steelbuilderstechengltd.com.ng",
   };
 }

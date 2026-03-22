@@ -5,7 +5,6 @@ import {
   Typography,
   Link,
   IconButton,
-  useTheme,
   Divider,
 } from "@mui/material";
 import {
@@ -18,6 +17,7 @@ import {
   Phone,
   Email,
 } from "@mui/icons-material";
+import { FaTiktok } from "react-icons/fa";
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import { MAGENTA, BLUE_GREEN, GOLD } from "../theme/theme";
@@ -91,8 +91,6 @@ const ContactItem = styled(Box)(({ theme }) => ({
 
 // Component
 const Footer: React.FC = () => {
-  const theme = useTheme();
-
   const navItems = [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
@@ -110,16 +108,27 @@ const Footer: React.FC = () => {
   ];
 
   const socialIcons = [
-    { icon: <FacebookIcon />, href: "#" },
-    { icon: <TwitterIcon />, href: "#" },
-    { icon: <InstagramIcon />, href: "#" },
-    { icon: <LinkedInIcon />, href: "#" },
-    { icon: <YouTubeIcon />, href: "#" },
+    {
+      icon: <FacebookIcon />,
+      href: "https://www.facebook.com/profile.php?id=100075628998773",
+    },
+    {
+      icon: <InstagramIcon />,
+      href: "https://www.instagram.com/steel_builders_tech_eng_ltd/",
+    },
+    {
+      icon: <FaTiktok />,
+      href: "https://www.tiktok.com/@steelbuilderstech",
+    },
+    {
+      icon: <YouTubeIcon />,
+      href: "https://www.youtube.com/@steel-builders-technical-e4768",
+    },
   ];
 
   return (
     <FooterContainer as="footer">
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Grid container spacing={4}>
           {/* Company Info & Logo */}
           <Grid size={{ xs: 12, md: 4 }}>
@@ -178,58 +187,22 @@ const Footer: React.FC = () => {
             <ContactItem>
               <LocationOn sx={{ color: BLUE_GREEN, mr: 1 }} />
               <Typography variant="body2">
-                123 Company Street, City, State 12345
+                Local Government, Epe along epe-ikorodu road behind conoil
+                filling station lagos Nigeria Epe, Lagos 105101, Lagos
               </Typography>
             </ContactItem>
             <ContactItem>
               <Phone sx={{ color: BLUE_GREEN, mr: 1 }} />
-              <Typography variant="body2">+1 (123) 456-7890</Typography>
+              <Typography variant="body2">
+                +234 813 553 3480, +234 814 534 9351
+              </Typography>
             </ContactItem>
             <ContactItem>
               <Email sx={{ color: BLUE_GREEN, mr: 1 }} />
-              <Typography variant="body2">info@company.com</Typography>
-            </ContactItem>
-
-            {/* Newsletter Signup */}
-            <Box mt={3}>
-              <Typography
-                variant="body1"
-                fontWeight="bold"
-                color={MAGENTA}
-                gutterBottom
-              >
-                Subscribe to our Newsletter
+              <Typography variant="body2">
+                steelbuilderstechnicalengineer@gmail.com
               </Typography>
-              <Box display="flex" mt={1}>
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  style={{
-                    flexGrow: 1,
-                    padding: "8px 12px",
-                    border: `1px solid ${BLUE_GREEN}`,
-                    borderRadius: "4px 0 0 4px",
-                    outline: "none",
-                    backgroundColor:
-                      theme.palette.mode === "dark" ? "#2a2a2a" : "#ffffff",
-                    color: theme.palette.text.primary,
-                  }}
-                />
-                <button
-                  style={{
-                    backgroundColor: MAGENTA,
-                    color: "white",
-                    border: "none",
-                    padding: "0 15px",
-                    borderRadius: "0 4px 4px 0",
-                    cursor: "pointer",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Subscribe
-                </button>
-              </Box>
-            </Box>
+            </ContactItem>
           </Grid>
         </Grid>
         <Divider sx={{ my: 4, borderColor: BLUE_GREEN }} />

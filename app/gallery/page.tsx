@@ -21,14 +21,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: "https://steelbuilders.com.ng/gallery",
+    url: "https://www.steelbuilderstechengltd.com.ng/gallery",
     siteName: "Steel Builders Technical Engineering Ltd",
     title: "Project Gallery | Steel Builders Technical Engineering",
     description:
       "Explore our portfolio of industrial machinery projects and installations across Nigeria.",
     images: [
       {
-        url: "/images/t7.jpg",
+        url: "/images/t7.webp",
         width: 1200,
         height: 630,
         alt: "Steel Builders project gallery",
@@ -40,9 +40,12 @@ export const metadata: Metadata = {
     title: "Project Gallery | Steel Builders",
     description: "View our industrial machinery projects and installations.",
     images: {
-      url: "/images/t7.jpg",
+      url: "/images/t7.webp",
       alt: "Steel Builders gallery",
     },
+  },
+  alternates: {
+    canonical: "https://www.steelbuilderstechengltd.com.ng/gallery",
   },
 };
 

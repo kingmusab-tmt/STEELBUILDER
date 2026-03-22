@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://steelbuilders.com.ng"),
+  metadataBase: new URL("https://www.steelbuilderstechengltd.com.ng"),
   title:
     "Steel Builders Technical Engineering Ltd - Industrial Machinery Solutions",
   description:
@@ -48,20 +48,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: "https://steelbuilders.com.ng",
+    url: "https://www.steelbuilderstechengltd.com.ng",
     siteName: "Steel Builders Technical Engineering Ltd",
     title: "Steel Builders Technical Engineering Ltd",
     description: "Industrial machinery solutions and engineering services",
     images: [
       {
-        url: "https://steelbuilders.com.ng/og-image.png",
+        url: "/images/t7.webp",
         width: 1200,
         height: 630,
+        alt: "Steel Builders Technical Engineering Ltd - Industrial machinery solutions",
       },
     ],
   },
+  verification: {
+    google: "vaERSZEzARTzp_CaQ1tFJkj9AnIL64ipYJS7qozx_6M",
+  },
   alternates: {
-    canonical: "https://steelbuilders.com.ng",
+    canonical: "https://www.steelbuilderstechengltd.com.ng",
   },
 };
 

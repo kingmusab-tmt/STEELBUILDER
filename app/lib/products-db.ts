@@ -53,7 +53,7 @@ function getDefaultProducts(): Product[] {
       category: "Block Molding",
       description:
         "A stationary, semi-automatic concrete block making machine designed for producing various types of blocks and paving stones. Features a vibration system for compact and high-density bricks, manual operation for feeding and mold movement, and a durable Q345 steel structure.",
-      image: "/images/t7.jpg",
+      image: "/images/t7.webp",
       specifications: [
         "Power: Around 9.6 kW",
         "Cycle Time: Approximately 35-40 seconds",
@@ -86,7 +86,7 @@ function getDefaultProducts(): Product[] {
       category: "Stone Crushing",
       description:
         "Heavy-duty stone crushing machine designed for aggregate production and material processing. Capable of handling various rock types and sizes with high throughput capacity.",
-      image: "/images/t1.jpg",
+      image: "/images/t1.webp",
       specifications: [
         "Capacity: 50-200 tons/hour",
         "Motor Power: 30-75 kW",
@@ -118,7 +118,7 @@ function getDefaultProducts(): Product[] {
       category: "Paving Stones",
       description:
         "Fully automatic paving stone and interlocking brick production machine with high production capacity and precision molding.",
-      image: "/images/t7.jpg",
+      image: "/images/t7.webp",
       specifications: [
         "Production Capacity: 2000-3000 pieces/day",
         "Cycle Time: 20-30 seconds",

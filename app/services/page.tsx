@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: "https://steelbuilders.com.ng/services",
+    url: "https://www.steelbuilderstechengltd.com.ng/services",
     siteName: "Steel Builders Technical Engineering Ltd",
     title:
       "Professional Industrial Machinery Services | Steel Builders Technical Engineering",
@@ -53,11 +53,11 @@ export const metadata: Metadata = {
       "Comprehensive industrial machinery services from design to installation and ongoing support. Specializing in block molding machines, stone crushers, and custom fabrication solutions.",
     images: [
       {
-        url: "/images/t7.jpg",
+        url: "/images/t7.webp",
         width: 1200,
         height: 630,
         alt: "Steel Builders industrial machinery manufacturing and installation services",
-        type: "image/jpeg",
+        type: "image/webp",
       },
     ],
   },
@@ -70,20 +70,16 @@ export const metadata: Metadata = {
     description:
       "Expert machinery fabrication, installation, and maintenance services. Serving industries across Nigeria with high-quality equipment solutions.",
     images: {
-      url: "/images/t7.jpg",
+      url: "/images/t7.webp",
       alt: "Steel Builders services and equipment",
     },
   },
   alternates: {
-    canonical: "https://steelbuilders.com.ng/services",
+    canonical: "https://www.steelbuilderstechengltd.com.ng/services",
     languages: {
-      "en-NG": "https://steelbuilders.com.ng/services",
-      "en-US": "https://steelbuilders.com.ng/services",
+      "en-NG": "https://www.steelbuilderstechengltd.com.ng/services",
+      "en-US": "https://www.steelbuilderstechengltd.com.ng/services",
     },
-  },
-  verification: {
-    google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code",
   },
   other: {
     "geo.region": "NG-LA",

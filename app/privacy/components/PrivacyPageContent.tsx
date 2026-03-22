@@ -21,11 +21,11 @@ const privacySchema = {
   name: "Privacy Policy",
   description:
     "Steel Builders Technical Engineering Ltd privacy policy and data protection practices",
-  url: "https://steelbuilders.com.ng/privacy",
+  url: "https://www.steelbuilderstechengltd.com.ng/privacy",
   isPartOf: {
     "@type": "WebSite",
     name: "Steel Builders Technical Engineering Ltd",
-    url: "https://steelbuilders.com.ng",
+    url: "https://www.steelbuilderstechengltd.com.ng",
   },
   inLanguage: "en-NG",
   datePublished: "2024-01-01",
@@ -170,8 +170,8 @@ export default function PrivacyPageContent() {
       content:
         "If you have questions, concerns, or requests regarding this privacy policy or our data practices, please contact us:",
       items: [
-        "Email: steelbuilderseng@gmail.com",
-        "Phone: +234 813 615 0837",
+        "Email: steelbuilderstechnicalengineer@gmail.com",
+        "Phone: +234 813 553 3480, +234 814 534 9351",
         "Address: Epe Industrial Area, Lagos, Nigeria 106101",
         "Data Protection Officer: Available upon request",
       ],

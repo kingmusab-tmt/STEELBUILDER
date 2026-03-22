@@ -47,7 +47,7 @@ const HeroSection = styled(Box)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    background: "url(/images/t7.jpg)",
+    background: "url(/images/t7.webp)",
     backgroundSize: "cover",
     backgroundPosition: "center",
     opacity: 0.1,
@@ -165,19 +165,20 @@ export default function ContactPageContent() {
     {
       icon: <PhoneIcon />,
       title: "Phone Number",
-      content: "+234 813 615 0837",
+      content: "+234 813 553 3480",
       link: "tel:+2348136150837",
     },
     {
       icon: <EmailIcon />,
       title: "Email Address",
-      content: "steelbuilderseng@gmail.com",
-      link: "mailto:steelbuilderseng@gmail.com",
+      content: "steelbuilderstechnicalengineer",
+      link: "mailto:steelbuilderstechnicalengineer@gmail.com",
     },
     {
       icon: <LocationOnIcon />,
       title: "Office Address",
-      content: "Epe, Lagos State, Nigeria",
+      content:
+        "Local Government, Epe along epe-ikorodu road behind conoil filling station lagos Nigeria Epe, Lagos 105101, Lagos",
       link: "https://maps.google.com/?q=Epe,Lagos+State,Nigeria",
     },
     {
@@ -226,7 +227,7 @@ export default function ContactPageContent() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -254,8 +255,8 @@ export default function ContactPageContent() {
     setTimeout(() => {
       // For now, we'll send via WhatsApp
       const whatsappMessage = `*New Contact Form Submission*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Subject:* ${formData.subject}\n\n*Message:*\n${formData.message}`;
-      const whatsappUrl = `https://wa.me/2348136150837?text=${encodeURIComponent(
-        whatsappMessage
+      const whatsappUrl = `https://wa.me/+2348135533480?text=${encodeURIComponent(
+        whatsappMessage,
       )}`;
 
       // Open WhatsApp in new tab
@@ -287,8 +288,8 @@ export default function ContactPageContent() {
   const handleWhatsAppClick = () => {
     const message =
       "Hello! I would like to inquire about your industrial machinery services.";
-    const whatsappUrl = `https://wa.me/2348136150837?text=${encodeURIComponent(
-      message
+    const whatsappUrl = `https://wa.me/+2348135533480?text=${encodeURIComponent(
+      message,
     )}`;
     window.open(whatsappUrl, "_blank");
   };
@@ -520,7 +521,7 @@ export default function ContactPageContent() {
                       <WhatsAppIcon />
                     </SocialIconButton>
                     <Link
-                      href="https://facebook.com/steelbuilders"
+                      href="https://www.facebook.com/profile.php?id=100075628998773"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -537,7 +538,7 @@ export default function ContactPageContent() {
                       </SocialIconButton>
                     </Link>
                     <Link
-                      href="https://instagram.com/steelbuilders"
+                      href="https://www.instagram.com/steel_builders_tech_eng_ltd/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -610,7 +611,9 @@ export default function ContactPageContent() {
                     firsthand.
                   </Typography>
                   <Typography variant="body2" color="text.secondary" paragraph>
-                    <strong>Address:</strong> Epe, Lagos State, Nigeria
+                    <strong>Address:</strong> Local Government, Epe along
+                    epe-ikorodu road behind conoil filling station lagos Nigeria
+                    Epe, Lagos 105101, Lagos
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     <strong>Directions:</strong> Located in the industrial area
