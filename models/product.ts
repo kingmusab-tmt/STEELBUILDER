@@ -5,6 +5,7 @@ export interface IProduct extends Document {
   category: string;
   description: string;
   image: string;
+  images: string[];
   specifications: string[];
   applications: string[];
   features: string[];
@@ -30,6 +31,10 @@ const productSchema = new Schema<IProduct>(
     image: {
       type: String,
       required: [true, "Please provide an image URL"],
+    },
+    images: {
+      type: [String],
+      default: [],
     },
     specifications: {
       type: [String],

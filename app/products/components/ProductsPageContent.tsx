@@ -24,6 +24,7 @@ import {
   MenuItem,
   TextField,
   CircularProgress,
+  IconButton,
 } from "@mui/material";
 import {
   CheckCircle,
@@ -31,6 +32,8 @@ import {
   Close,
   Search,
   Download,
+  NavigateBefore,
+  NavigateNext,
 } from "@mui/icons-material";
 import Image from "next/image";
 import Header from "../../components/Header";
@@ -46,6 +49,7 @@ interface Product {
   category: string;
   description: string;
   image: string;
+  images: string[];
   specifications: string[];
   applications: string[];
   features: string[];
@@ -60,6 +64,10 @@ export default function ProductsPageContent() {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
+  const [cardImageIndices, setCardImageIndices] = useState<
+    Record<string, number>
+  >({});
+  const [detailImageIndex, setDetailImageIndex] = useState(0);
 
   const categories = [
     "All",
@@ -110,6 +118,7 @@ export default function ProductsPageContent() {
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
+    setDetailImageIndex(0);
     setDetailsOpen(true);
   };
 
@@ -254,7 +263,14 @@ ${product.applications.map((a) => `- ${a}`).join("\n")}
         {/* Products Grid */}
         <Grid container spacing={4}>
           {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
+            filteredProducts.map((product) => {
+              const allImages = [
+                product.image,
+                ...(product.images || []),
+              ].filter(Boolean);
+              const currentCardIdx = cardImageIndices[product.id] || 0;
+              const hasMultiple = allImages.length > 1;
+              return (
               <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
                 <Card
                   sx={{
@@ -276,14 +292,103 @@ ${product.applications.map((a) => `- ${a}`).join("\n")}
                     }}
                   >
                     <Image
-                      src={product.image}
-                      alt={product.name}
+                      src={allImages[currentCardIdx] || product.image}
+                      alt={`${product.name} view ${currentCardIdx + 1}`}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       style={{
                         objectFit: "cover",
                       }}
                     />
+                    {hasMultiple && (
+                      <>
+                        <IconButton
+                          size="small"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCardImageIndices((prev) => ({
+                              ...prev,
+                              [product.id]:
+                                (currentCardIdx - 1 + allImages.length) %
+                                allImages.length,
+                            }));
+                          }}
+                          sx={{
+                            position: "absolute",
+                            left: 4,
+                            top: "50%",
+                            transform: "translateY(-50%)",
+                            backgroundColor: "rgba(0,0,0,0.5)",
+                            color: "white",
+                            padding: "4px",
+                            "&:hover": {
+                              backgroundColor: "rgba(0,0,0,0.75)",
+                            },
+                          }}
+                        >
+                          <NavigateBefore fontSize="small" />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCardImageIndices((prev) => ({
+                              ...prev,
+                              [product.id]:
+                                (currentCardIdx + 1) % allImages.length,
+                            }));
+                          }}
+                          sx={{
+                            position: "absolute",
+                            right: 4,
+                            top: "50%",
+                            transform: "translateY(-50%)",
+                            backgroundColor: "rgba(0,0,0,0.5)",
+                            color: "white",
+                            padding: "4px",
+                            "&:hover": {
+                              backgroundColor: "rgba(0,0,0,0.75)",
+                            },
+                          }}
+                        >
+                          <NavigateNext fontSize="small" />
+                        </IconButton>
+                        <Box
+                          sx={{
+                            position: "absolute",
+                            bottom: 8,
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "center",
+                            gap: 0.5,
+                          }}
+                        >
+                          {allImages.map((_, i) => (
+                            <Box
+                              key={i}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setCardImageIndices((prev) => ({
+                                  ...prev,
+                                  [product.id]: i,
+                                }));
+                              }}
+                              sx={{
+                                width: 6,
+                                height: 6,
+                                borderRadius: "50%",
+                                backgroundColor:
+                                  i === currentCardIdx
+                                    ? "white"
+                                    : "rgba(255,255,255,0.5)",
+                                cursor: "pointer",
+                                transition: "background-color 0.2s",
+                              }}
+                            />
+                          ))}
+                        </Box>
+                      </>
+                    )}
                   </CardMedia>
                   <CardContent sx={{ flexGrow: 1, pb: 1 }}>
                     <Chip
@@ -351,7 +456,8 @@ ${product.applications.map((a) => `- ${a}`).join("\n")}
                   </Box>
                 </Card>
               </Grid>
-            ))
+              );
+            })
           ) : (
             <Grid size={{ xs: 12 }}>
               <Box sx={{ textAlign: "center", py: 6 }}>
@@ -395,20 +501,152 @@ ${product.applications.map((a) => `- ${a}`).join("\n")}
               dividers
               sx={{ maxHeight: "70vh", overflow: "auto" }}
             >
-              <Box
-                sx={{ mb: 3, position: "relative", height: 200, width: "100%" }}
-              >
-                <Image
-                  src={selectedProduct.image}
-                  alt={selectedProduct.name}
-                  fill
-                  sizes="100vw"
-                  style={{
-                    objectFit: "cover",
-                    borderRadius: 8,
-                  }}
-                />
-              </Box>
+              {/* Image Gallery */}
+              {(() => {
+                const allDetailImages = [
+                  selectedProduct.image,
+                  ...(selectedProduct.images || []),
+                ].filter(Boolean);
+                return (
+                  <Box sx={{ mb: 3 }}>
+                    <Box
+                      sx={{
+                        position: "relative",
+                        height: 220,
+                        width: "100%",
+                        borderRadius: 1,
+                        overflow: "hidden",
+                        mb: 1,
+                      }}
+                    >
+                      <Image
+                        src={allDetailImages[detailImageIndex]}
+                        alt={`${selectedProduct.name} view ${detailImageIndex + 1}`}
+                        fill
+                        sizes="100vw"
+                        style={{ objectFit: "cover" }}
+                      />
+                      {allDetailImages.length > 1 && (
+                        <>
+                          <IconButton
+                            size="small"
+                            onClick={() =>
+                              setDetailImageIndex(
+                                (prev) =>
+                                  (prev - 1 + allDetailImages.length) %
+                                  allDetailImages.length
+                              )
+                            }
+                            sx={{
+                              position: "absolute",
+                              left: 6,
+                              top: "50%",
+                              transform: "translateY(-50%)",
+                              backgroundColor: "rgba(0,0,0,0.5)",
+                              color: "white",
+                              "&:hover": {
+                                backgroundColor: "rgba(0,0,0,0.75)",
+                              },
+                            }}
+                          >
+                            <NavigateBefore />
+                          </IconButton>
+                          <IconButton
+                            size="small"
+                            onClick={() =>
+                              setDetailImageIndex(
+                                (prev) => (prev + 1) % allDetailImages.length
+                              )
+                            }
+                            sx={{
+                              position: "absolute",
+                              right: 6,
+                              top: "50%",
+                              transform: "translateY(-50%)",
+                              backgroundColor: "rgba(0,0,0,0.5)",
+                              color: "white",
+                              "&:hover": {
+                                backgroundColor: "rgba(0,0,0,0.75)",
+                              },
+                            }}
+                          >
+                            <NavigateNext />
+                          </IconButton>
+                          <Box
+                            sx={{
+                              position: "absolute",
+                              bottom: 8,
+                              width: "100%",
+                              display: "flex",
+                              justifyContent: "center",
+                              gap: 0.5,
+                            }}
+                          >
+                            {allDetailImages.map((_, i) => (
+                              <Box
+                                key={i}
+                                onClick={() => setDetailImageIndex(i)}
+                                sx={{
+                                  width: 8,
+                                  height: 8,
+                                  borderRadius: "50%",
+                                  backgroundColor:
+                                    i === detailImageIndex
+                                      ? "white"
+                                      : "rgba(255,255,255,0.5)",
+                                  cursor: "pointer",
+                                  transition: "background-color 0.2s",
+                                }}
+                              />
+                            ))}
+                          </Box>
+                        </>
+                      )}
+                    </Box>
+                    {/* Thumbnails */}
+                    {allDetailImages.length > 1 && (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          gap: 1,
+                          overflowX: "auto",
+                          pb: 0.5,
+                        }}
+                      >
+                        {allDetailImages.map((img, i) => (
+                          <Box
+                            key={i}
+                            onClick={() => setDetailImageIndex(i)}
+                            sx={{
+                              position: "relative",
+                              width: 56,
+                              height: 56,
+                              borderRadius: 1,
+                              overflow: "hidden",
+                              flexShrink: 0,
+                              cursor: "pointer",
+                              border:
+                                i === detailImageIndex
+                                  ? `2px solid ${BLUE_GREEN}`
+                                  : "2px solid transparent",
+                              opacity: i === detailImageIndex ? 1 : 0.65,
+                              transition: "opacity 0.2s, border-color 0.2s",
+                              "&:hover": { opacity: 1 },
+                            }}
+                          >
+                            <Image
+                              src={img}
+                              alt={`Thumbnail ${i + 1}`}
+                              fill
+                              style={{ objectFit: "cover" }}
+                            />
+                          </Box>
+                        ))}
+                      </Box>
+                    )}
+                  </Box>
+                );
+              })()}
 
               <Typography
                 variant="body1"
