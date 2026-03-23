@@ -295,7 +295,7 @@ export default function HomePageContent() {
         id="hero"
         sx={{
           height: "100vh",
-          background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${currentImage})`,
+          background: `linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url(${currentImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           color: "white",
@@ -358,15 +358,16 @@ export default function HomePageContent() {
             variant="h1"
             component="h1"
             sx={{
-              fontSize: isMobile ? "2.5rem" : "3.5rem",
-              fontWeight: "bold",
+              fontSize: isMobile ? "2.5rem" : "5.5rem",
+              fontWeight: "900",
+              textShadow: "0.5px 1.5px 0.5px rgba(255, 254, 254, 0.9)",
               mb: 2,
               background: `linear-gradient(45deg, ${MAGENTA}, ${BLUE_GREEN})`,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
           >
-            Steel Builders Technical Engineering Ltd
+            Steel Builders Technical Engineering Ltd.
           </Typography>
           <Typography
             variant="h5"
