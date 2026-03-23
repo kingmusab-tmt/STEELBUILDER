@@ -34,6 +34,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { MAGENTA, BLUE_GREEN, GOLD, LIGHT_MAGENTA } from "@/app/theme/theme";
 import { styled } from "@mui/material/styles";
+import LoadingSpinner from "./loadingSpinner";
 
 interface HeroImage {
   id: string;
@@ -276,7 +277,7 @@ export default function HomePageContent() {
           minHeight: "100vh",
         }}
       >
-        <CircularProgress />
+        <LoadingSpinner />
       </Box>
     );
   }

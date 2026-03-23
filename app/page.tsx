@@ -57,14 +57,14 @@ export const metadata: Metadata = {
       "Nigeria's premier manufacturer of industrial machinery. Specializing in block molding machines, stone crushers, and custom fabrication with 600+ projects and 800+ skilled engineers.",
     images: [
       {
-        url: "/images/t7.webp",
+        url: "/images/logo.png",
         width: 1200,
         height: 630,
         alt: "Steel Builders Technical Engineering Ltd - Industrial Machinery Manufacturing Facility",
         type: "image/webp",
       },
       {
-        url: "/images/t1.webp",
+        url: "/images/logo.png",
         width: 1200,
         height: 630,
         alt: "Steel Builders Industrial Projects and Machinery",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     description:
       "Leading manufacturer of industrial machinery in Nigeria. 600+ projects, 190+ clients, 9+ years of excellence.",
     images: {
-      url: "/images/t7.webp",
+      url: "/images/logo.png",
       alt: "Steel Builders Technical Engineering Ltd Facility",
     },
   },
@@ -114,7 +114,7 @@ const jsonLd = {
   telephone: "+234 813 553 3480",
   email: "steelbuilderstechnicalengineer@gmail.com",
   logo: "https://www.steelbuilderstechengltd.com.ng/images/logo.png",
-  image: "https://www.steelbuilderstechengltd.com.ng/images/t7.webp",
+  image: "https://www.steelbuilderstechengltd.com.ng/images/logo.png",
   foundingDate: "2015",
   numberOfEmployees: {
     "@type": "QuantitativeValue",
