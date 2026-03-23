@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import mongoose from "mongoose";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
   try {
     await connectDB();
@@ -13,7 +17,7 @@ export async function DELETE(
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return NextResponse.json(
         { error: "Invalid quote request ID" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -22,7 +26,7 @@ export async function DELETE(
     if (!db) {
       return NextResponse.json(
         { error: "Database connection failed" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -33,7 +37,7 @@ export async function DELETE(
     if (result.deletedCount === 0) {
       return NextResponse.json(
         { error: "Quote request not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -41,7 +45,7 @@ export async function DELETE(
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to delete quote request" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

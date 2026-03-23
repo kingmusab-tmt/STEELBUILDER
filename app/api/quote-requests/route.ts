@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import mongoose, { Schema, Model, Document } from "mongoose";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 interface IQuoteRequest extends Document {
   firstName: string;
@@ -72,7 +73,7 @@ const quoteRequestSchema = new Schema<IQuoteRequest>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const QuoteRequest: Model<IQuoteRequest> =
@@ -80,6 +81,9 @@ const QuoteRequest: Model<IQuoteRequest> =
   mongoose.model("QuoteRequest", quoteRequestSchema);
 
 export async function GET() {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectDB();
     const requests = await QuoteRequest.find().sort({ submittedAt: -1 });
@@ -87,7 +91,7 @@ export async function GET() {
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to load quote requests" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -104,7 +108,7 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     return NextResponse.json(
       { error: error.message || "Failed to save quote request" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import HeroImage from "@/models/hero-image";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function GET() {
   try {
@@ -17,12 +18,15 @@ export async function GET() {
     console.error("Hero images fetch error:", error);
     return NextResponse.json(
       { error: "Failed to load hero images" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectDB();
     const body = await request.json();
@@ -41,13 +45,13 @@ export async function POST(request: NextRequest) {
         url: image.url,
         order: image.order,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Hero image create error:", error);
     return NextResponse.json(
       { error: "Failed to add hero image" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

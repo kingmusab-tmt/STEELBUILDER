@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import Testimonial from "@/models/testimonial";
 import { Types } from "mongoose";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
   try {
@@ -14,7 +15,7 @@ export async function GET(
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
         { error: "Invalid testimonial ID" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -22,7 +23,7 @@ export async function GET(
     if (!testimonial) {
       return NextResponse.json(
         { error: "Testimonial not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return NextResponse.json({
@@ -37,15 +38,18 @@ export async function GET(
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch testimonial" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
   try {
     await connectDB();
@@ -53,7 +57,7 @@ export async function PUT(
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
         { error: "Invalid testimonial ID" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -66,7 +70,7 @@ export async function PUT(
     if (!testimonial) {
       return NextResponse.json(
         { error: "Testimonial not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return NextResponse.json({
@@ -81,15 +85,18 @@ export async function PUT(
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to update testimonial" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
   try {
     await connectDB();
@@ -97,7 +104,7 @@ export async function DELETE(
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
         { error: "Invalid testimonial ID" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -105,7 +112,7 @@ export async function DELETE(
     if (!testimonial) {
       return NextResponse.json(
         { error: "Testimonial not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return NextResponse.json({
@@ -119,7 +126,7 @@ export async function DELETE(
         error: "Failed to delete testimonial",
         details: error instanceof Error ? error.message : "Unknown error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

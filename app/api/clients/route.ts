@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import Client from "@/models/client";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function GET() {
   try {
@@ -17,12 +18,15 @@ export async function GET() {
     console.error("Clients fetch error:", error);
     return NextResponse.json(
       { error: "Failed to load clients" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectDB();
     const body = await request.json();
@@ -41,13 +45,13 @@ export async function POST(request: NextRequest) {
         logo: client.logo,
         order: client.order,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Client create error:", error);
     return NextResponse.json(
       { error: "Failed to add client" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -72,6 +72,13 @@ interface Testimonial {
   order: number;
 }
 
+interface FAQ {
+  id: string;
+  question: string;
+  answer: string;
+  order: number;
+}
+
 const StyledTableCell = styled(TableCell)({
   fontWeight: 500,
 });
@@ -141,6 +148,12 @@ export default function AdminDashboard() {
     image: "",
   });
 
+  // FAQ State
+  const [faqs, setFaqs] = useState<FAQ[]>([]);
+  const [faqDialogOpen, setFaqDialogOpen] = useState(false);
+  const [editingFaq, setEditingFaq] = useState<FAQ | null>(null);
+  const [faqForm, setFaqForm] = useState({ question: "", answer: "" });
+
   // Load data on mount
   useEffect(() => {
     loadAllData();
@@ -149,18 +162,20 @@ export default function AdminDashboard() {
   const loadAllData = async () => {
     setLoading(true);
     try {
-      const [heroRes, achievementRes, clientRes, testimonialRes] =
+      const [heroRes, achievementRes, clientRes, testimonialRes, faqRes] =
         await Promise.all([
           fetch("/api/hero-images"),
           fetch("/api/achievements"),
           fetch("/api/clients"),
           fetch("/api/testimonials"),
+          fetch("/api/faqs"),
         ]);
 
       if (heroRes.ok) setHeroImages(await heroRes.json());
       if (achievementRes.ok) setAchievements(await achievementRes.json());
       if (clientRes.ok) setClients(await clientRes.json());
       if (testimonialRes.ok) setTestimonials(await testimonialRes.json());
+      if (faqRes.ok) setFaqs(await faqRes.json());
     } catch (error) {
       throw error;
     } finally {
@@ -172,7 +187,7 @@ export default function AdminDashboard() {
   const handleFileUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
     fieldName: string,
-    onSuccess: (url: string) => void
+    onSuccess: (url: string) => void,
   ) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -243,8 +258,8 @@ export default function AdminDashboard() {
         if (res.ok) {
           setHeroImages(
             heroImages.map((h) =>
-              h.id === editingHero.id ? { ...h, ...heroForm } : h
-            )
+              h.id === editingHero.id ? { ...h, ...heroForm } : h,
+            ),
           );
         } else {
           const error = await res.json();
@@ -322,8 +337,8 @@ export default function AdminDashboard() {
         if (res.ok) {
           setAchievements(
             achievements.map((a) =>
-              a.id === editingAchievement.id ? { ...a, ...achievementForm } : a
-            )
+              a.id === editingAchievement.id ? { ...a, ...achievementForm } : a,
+            ),
           );
         } else {
           const error = await res.json();
@@ -398,8 +413,8 @@ export default function AdminDashboard() {
         if (res.ok) {
           setClients(
             clients.map((c) =>
-              c.id === editingClient.id ? { ...c, ...clientForm } : c
-            )
+              c.id === editingClient.id ? { ...c, ...clientForm } : c,
+            ),
           );
         } else {
           const error = await res.json();
@@ -489,8 +504,8 @@ export default function AdminDashboard() {
         if (res.ok) {
           setTestimonials(
             testimonials.map((t) =>
-              t.id === editingTestimonial.id ? { ...t, ...testimonialForm } : t
-            )
+              t.id === editingTestimonial.id ? { ...t, ...testimonialForm } : t,
+            ),
           );
         } else {
           const error = await res.json();
@@ -535,6 +550,86 @@ export default function AdminDashboard() {
     } catch (error) {
       console.error("Delete testimonial error:", error);
       alert("Failed to delete testimonial");
+    }
+  };
+
+  // FAQ Handlers
+  const handleAddFaq = () => {
+    setEditingFaq(null);
+    setFaqForm({ question: "", answer: "" });
+    setFaqDialogOpen(true);
+  };
+
+  const handleEditFaq = (faq: FAQ) => {
+    setEditingFaq(faq);
+    setFaqForm({ question: faq.question, answer: faq.answer });
+    setFaqDialogOpen(true);
+  };
+
+  const handleSaveFaq = async () => {
+    if (!faqForm.question || !faqForm.answer) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    try {
+      if (editingFaq) {
+        const res = await fetch(`/api/faqs/${editingFaq.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(faqForm),
+        });
+
+        if (res.ok) {
+          setFaqs(
+            faqs.map((faq) =>
+              faq.id === editingFaq.id ? { ...faq, ...faqForm } : faq,
+            ),
+          );
+        } else {
+          const error = await res.json();
+          alert(`Error: ${error.error || "Failed to update FAQ"}`);
+          return;
+        }
+      } else {
+        const res = await fetch("/api/faqs", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...faqForm, order: faqs.length + 1 }),
+        });
+
+        if (res.ok) {
+          const newFaq = await res.json();
+          setFaqs([...faqs, newFaq]);
+        } else {
+          const error = await res.json();
+          alert(`Error: ${error.error || "Failed to create FAQ"}`);
+          return;
+        }
+      }
+
+      setFaqDialogOpen(false);
+    } catch (error) {
+      console.error("Save FAQ error:", error);
+      alert("Failed to save FAQ");
+    }
+  };
+
+  const handleDeleteFaq = async (id: string) => {
+    if (!confirm("Are you sure?")) return;
+
+    try {
+      const res = await fetch(`/api/faqs/${id}`, { method: "DELETE" });
+
+      if (res.ok) {
+        setFaqs(faqs.filter((faq) => faq.id !== id));
+      } else {
+        const error = await res.json();
+        alert(`Error: ${error.error || "Failed to delete FAQ"}`);
+      }
+    } catch (error) {
+      console.error("Delete FAQ error:", error);
+      alert("Failed to delete FAQ");
     }
   };
 
@@ -600,6 +695,11 @@ export default function AdminDashboard() {
               label="Testimonials"
               id="admin-tab-3"
               aria-controls="admin-tabpanel-3"
+            />
+            <Tab
+              label="FAQs"
+              id="admin-tab-4"
+              aria-controls="admin-tabpanel-4"
             />
           </Tabs>
 
@@ -851,6 +951,63 @@ export default function AdminDashboard() {
               </Table>
             </TableContainer>
           </TabPanel>
+
+          {/* FAQs Tab */}
+          <TabPanel value={tabValue} index={4}>
+            <Box sx={{ mb: 3 }}>
+              <Button
+                variant="contained"
+                startIcon={<AddIcon />}
+                onClick={handleAddFaq}
+                sx={{ mb: 2 }}
+              >
+                Add FAQ
+              </Button>
+            </Box>
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow sx={{ backgroundColor: "#f5f5f5" }}>
+                    <StyledTableCell>Question</StyledTableCell>
+                    <StyledTableCell>Answer</StyledTableCell>
+                    <StyledTableCell align="right">Actions</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {faqs.map((faq) => (
+                    <TableRow key={faq.id}>
+                      <TableCell sx={{ maxWidth: 350 }}>
+                        {faq.question}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          maxWidth: 500,
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {faq.answer}
+                      </TableCell>
+                      <TableCell align="right">
+                        <IconButton
+                          size="small"
+                          onClick={() => handleEditFaq(faq)}
+                        >
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleDeleteFaq(faq.id)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </TabPanel>
         </Paper>
       </Container>
 
@@ -900,7 +1057,7 @@ export default function AdminDashboard() {
                 type="file"
                 onChange={(e) =>
                   handleFileUpload(e, "hero", (url) =>
-                    setHeroForm({ ...heroForm, url })
+                    setHeroForm({ ...heroForm, url }),
                   )
                 }
                 disabled={uploading}
@@ -1047,7 +1204,7 @@ export default function AdminDashboard() {
                 type="file"
                 onChange={(e) =>
                   handleFileUpload(e, "client", (url) =>
-                    setClientForm({ ...clientForm, logo: url })
+                    setClientForm({ ...clientForm, logo: url }),
                   )
                 }
                 disabled={uploading}
@@ -1174,7 +1331,7 @@ export default function AdminDashboard() {
                 type="file"
                 onChange={(e) =>
                   handleFileUpload(e, "testimonial", (url) =>
-                    setTestimonialForm({ ...testimonialForm, image: url })
+                    setTestimonialForm({ ...testimonialForm, image: url }),
                   )
                 }
                 disabled={uploading}
@@ -1212,6 +1369,41 @@ export default function AdminDashboard() {
             Cancel
           </Button>
           <Button onClick={handleSaveTestimonial} variant="contained">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* FAQ Dialog */}
+      <Dialog
+        open={faqDialogOpen}
+        onClose={() => setFaqDialogOpen(false)}
+        maxWidth="md"
+        fullWidth
+      >
+        <DialogTitle>{editingFaq ? "Edit FAQ" : "Add FAQ"}</DialogTitle>
+        <DialogContent sx={{ pt: 3 }}>
+          <TextField
+            fullWidth
+            label="Question"
+            value={faqForm.question}
+            onChange={(e) =>
+              setFaqForm({ ...faqForm, question: e.target.value })
+            }
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            fullWidth
+            label="Answer"
+            value={faqForm.answer}
+            onChange={(e) => setFaqForm({ ...faqForm, answer: e.target.value })}
+            multiline
+            rows={5}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setFaqDialogOpen(false)}>Cancel</Button>
+          <Button onClick={handleSaveFaq} variant="contained">
             Save
           </Button>
         </DialogActions>

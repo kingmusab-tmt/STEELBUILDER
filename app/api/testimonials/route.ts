@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import Testimonial from "@/models/testimonial";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function GET() {
   try {
@@ -20,12 +21,15 @@ export async function GET() {
     console.error("Testimonials fetch error:", error);
     return NextResponse.json(
       { error: "Failed to load testimonials" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectDB();
     const body = await request.json();
@@ -41,13 +45,13 @@ export async function POST(request: NextRequest) {
         image: testimonial.image,
         order: testimonial.order,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Testimonial create error:", error);
     return NextResponse.json(
       { error: "Failed to add testimonial" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

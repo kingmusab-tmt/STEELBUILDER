@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import Gallery from "@/models/gallery";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function GET() {
   try {
@@ -18,12 +19,15 @@ export async function GET() {
     console.error("Gallery fetch error:", error);
     return NextResponse.json(
       { error: "Failed to fetch gallery" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectDB();
     const body = await request.json();
@@ -43,13 +47,13 @@ export async function POST(request: NextRequest) {
         order: newItem.order,
         createdAt: newItem.createdAt,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Gallery create error:", error);
     return NextResponse.json(
       { error: "Failed to create gallery item" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

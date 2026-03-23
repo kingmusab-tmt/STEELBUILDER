@@ -63,6 +63,13 @@ interface Testimonial {
   image: string;
 }
 
+interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+  order: number;
+}
+
 const ClientLogoWrapper = styled(Box)({
   height: 100,
   display: "flex",
@@ -99,6 +106,7 @@ export default function HomePageContent() {
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [faqs, setFaqs] = useState<FAQItem[]>([]);
   const [galleryImages, setGalleryImages] = useState<
     { image: string; title: string }[]
   >([]);
@@ -108,14 +116,21 @@ export default function HomePageContent() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [heroRes, achievementRes, clientRes, testimonialRes, galleryRes] =
-          await Promise.all([
-            fetch("/api/hero-images"),
-            fetch("/api/achievements"),
-            fetch("/api/clients"),
-            fetch("/api/testimonials"),
-            fetch("/api/gallery"),
-          ]);
+        const [
+          heroRes,
+          achievementRes,
+          clientRes,
+          testimonialRes,
+          galleryRes,
+          faqRes,
+        ] = await Promise.all([
+          fetch("/api/hero-images"),
+          fetch("/api/achievements"),
+          fetch("/api/clients"),
+          fetch("/api/testimonials"),
+          fetch("/api/gallery"),
+          fetch("/api/faqs"),
+        ]);
 
         if (heroRes.ok) setHeroImages(await heroRes.json());
         if (achievementRes.ok) {
@@ -129,6 +144,7 @@ export default function HomePageContent() {
         if (clientRes.ok) setClients(await clientRes.json());
         if (testimonialRes.ok) setTestimonials(await testimonialRes.json());
         if (galleryRes.ok) setGalleryImages(await galleryRes.json());
+        if (faqRes.ok) setFaqs(await faqRes.json());
       } catch (error) {
         console.error("Error loading data:", error);
       } finally {
@@ -1205,7 +1221,7 @@ export default function HomePageContent() {
       </Box>
 
       {/* FAQ Section */}
-      <FAQSection />
+      <FAQSection faqs={faqs} />
 
       <Footer />
 

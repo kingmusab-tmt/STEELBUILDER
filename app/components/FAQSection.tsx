@@ -14,11 +14,12 @@ import { ExpandMore } from "@mui/icons-material";
 import { MAGENTA, BLUE_GREEN } from "../theme/theme";
 
 interface FAQItem {
+  id?: string;
   question: string;
   answer: string;
 }
 
-const FAQList: FAQItem[] = [
+const fallbackFAQList: FAQItem[] = [
   {
     question: "What is a block molding machine?",
     answer:
@@ -71,11 +72,15 @@ const FAQList: FAQItem[] = [
   },
 ];
 
-export function FAQSchema() {
+interface FAQSectionProps {
+  faqs?: FAQItem[];
+}
+
+export function FAQSchema({ faqs }: { faqs: FAQItem[] }) {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQList.map((item) => ({
+    mainEntity: faqs.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {
@@ -93,10 +98,14 @@ export function FAQSchema() {
   );
 }
 
-export default function FAQSection() {
+export { fallbackFAQList };
+
+export default function FAQSection({ faqs }: FAQSectionProps) {
+  const faqList = faqs && faqs.length > 0 ? faqs : fallbackFAQList;
+
   return (
     <Box sx={{ py: 8, backgroundColor: "#f5f5f5" }}>
-      <FAQSchema />
+      <FAQSchema faqs={faqList} />
       <Container maxWidth="xl">
         <Typography
           variant="h2"
@@ -125,13 +134,13 @@ export default function FAQSection() {
 
         <Grid container spacing={3}>
           {[
-            FAQList.slice(0, Math.ceil(FAQList.length / 2)),
-            FAQList.slice(Math.ceil(FAQList.length / 2)),
+            faqList.slice(0, Math.ceil(faqList.length / 2)),
+            faqList.slice(Math.ceil(faqList.length / 2)),
           ].map((column, colIndex) => (
             <Grid key={colIndex} size={{ xs: 12, md: 6 }}>
               {column.map((item, index) => (
                 <Accordion
-                  key={index}
+                  key={item.id || `${colIndex}-${index}`}
                   sx={{
                     mb: 2,
                     "&:before": { display: "none" },

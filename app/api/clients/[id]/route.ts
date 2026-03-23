@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import Client from "@/models/client";
 import { Types } from "mongoose";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
   try {
@@ -29,15 +30,18 @@ export async function GET(
     console.error("Client fetch error:", error);
     return NextResponse.json(
       { error: "Failed to fetch client" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
   try {
     await connectDB();
@@ -64,15 +68,18 @@ export async function PUT(
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to update client" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
   try {
     await connectDB();
@@ -96,7 +103,7 @@ export async function DELETE(
         error: "Failed to delete client",
         details: error instanceof Error ? error.message : "Unknown error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

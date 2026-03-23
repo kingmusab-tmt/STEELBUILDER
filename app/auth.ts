@@ -1,6 +1,4 @@
-import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import bcrypt from "bcrypt";
 import User from "@/models/user";
 import connectDB from "@/utils/connectDB";
 import clientPromise from "@/utils/mongoConnect";
@@ -38,47 +36,6 @@ export const authOptions = {
         timeout: 10000,
       },
     }),
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {},
-      async authorize(credentials): Promise<any> {
-        const { email, password } = credentials as {
-          email: string;
-          password: string;
-        };
-        try {
-          await connectDB();
-          const user = await User.findOne({ email });
-          if (!user) {
-            // Log failed login attempt - user not found
-            // await logFailedLogin(email, "User not found");
-            throw new Error("Invalid email or password");
-          }
-          const isPasswordValid = await bcrypt.compare(password, user.password);
-
-          if (!isPasswordValid) {
-            // Log failed login attempt - invalid password
-            // await logFailedLogin(email, "Invalid password");
-            throw new Error("Invalid email or password");
-          }
-
-          // Log successful login
-          // await logSuccessfulLogin(user.id, user.email, user.name, user.role);
-
-          return user;
-        } catch (error) {
-          // Log general authentication error if not already logged
-          if (
-            error instanceof Error &&
-            error.message === "Invalid email or password"
-          ) {
-            throw error;
-          }
-          // await logFailedLogin(email, "Authentication error");
-          throw new Error("Invalid email or password");
-        }
-      },
-    }),
   ],
   session: {
     strategy: "jwt" as SessionStrategy,
@@ -90,8 +47,18 @@ export const authOptions = {
   },
   callbacks: {
     async redirect({ url, baseUrl }) {
-      // Let the client-side handle the redirect based on session role
-      // Default to home page and let useEffect in LoginForm handle role-based redirect
+      if (url.startsWith("/")) {
+        return `${baseUrl}${url}`;
+      }
+
+      try {
+        if (new URL(url).origin === baseUrl) {
+          return url;
+        }
+      } catch {
+        // Fallback to baseUrl for malformed or unsafe callback URLs.
+      }
+
       return baseUrl;
     },
 

@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import HeroImage from "@/models/hero-image";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
   try {
@@ -13,7 +14,7 @@ export async function GET(
     if (!image) {
       return NextResponse.json(
         { error: "Hero image not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return NextResponse.json({
@@ -26,15 +27,18 @@ export async function GET(
     console.error("Hero image fetch error:", error);
     return NextResponse.json(
       { error: "Failed to fetch hero image" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
   try {
     await connectDB();
@@ -46,7 +50,7 @@ export async function PUT(
     if (!image) {
       return NextResponse.json(
         { error: "Hero image not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return NextResponse.json({
@@ -59,15 +63,18 @@ export async function PUT(
     console.error("Hero image update error:", error);
     return NextResponse.json(
       { error: "Failed to update hero image" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
   try {
     await connectDB();
@@ -75,7 +82,7 @@ export async function DELETE(
     if (!image) {
       return NextResponse.json(
         { error: "Hero image not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return NextResponse.json({
@@ -89,7 +96,7 @@ export async function DELETE(
         error: "Failed to delete hero image",
         details: error instanceof Error ? error.message : "Unknown error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

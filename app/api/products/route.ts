@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import Product from "@/models/product";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function GET() {
   try {
@@ -22,12 +23,15 @@ export async function GET() {
     console.error("Products fetch error:", error);
     return NextResponse.json(
       { error: "Failed to fetch products" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectDB();
     const body = await request.json();
@@ -55,12 +59,12 @@ export async function POST(request: NextRequest) {
         features: newProduct.features,
         createdAt: newProduct.createdAt,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch {
     return NextResponse.json(
       { error: "Failed to create product" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

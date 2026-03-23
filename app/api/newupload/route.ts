@@ -1,21 +1,14 @@
 import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/auth";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request): Promise<NextResponse> {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session || !session.user) {
-      return NextResponse.json({
-        success: false,
-        message: "Unauthorized",
-        status: 401,
-      });
-    }
+    const unauthorized = await requireAdmin();
+    if (unauthorized) return unauthorized;
 
     const { searchParams } = new URL(request.url);
     const filename = searchParams.get("filename");
@@ -23,7 +16,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     if (!filename) {
       return NextResponse.json(
         { error: "Filename is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -47,7 +40,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         {
           error: `Invalid file type: ${file.type}. Only image files are allowed.`,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -63,7 +56,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         filename: newFileName,
         link: blob.url,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (err: any) {
     return NextResponse.json(
@@ -72,7 +65,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         message: err.message || "Unknown error occurred",
         stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

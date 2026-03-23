@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import Achievement from "@/models/achievement";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function GET() {
   try {
@@ -8,7 +9,7 @@ export async function GET() {
       console.error("MONGODB_URI is not defined");
       return NextResponse.json(
         { error: "Database configuration missing" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -29,12 +30,15 @@ export async function GET() {
         error: "Failed to load achievements",
         details: error instanceof Error ? error.message : "Unknown error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectDB();
     const body = await request.json();
@@ -51,7 +55,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to add achievement" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

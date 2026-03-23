@@ -2,11 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/utils/connectDB";
 import Achievement from "@/models/achievement";
 import { Types } from "mongoose";
+import { requireAdmin } from "@/app/api/_utils/requireAdmin";
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
   try {
     await connectDB();
@@ -14,7 +18,7 @@ export async function PUT(
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
         { error: "Invalid achievement ID" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -27,7 +31,7 @@ export async function PUT(
     if (!achievement) {
       return NextResponse.json(
         { error: "Achievement not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     const transformed = {
@@ -41,15 +45,18 @@ export async function PUT(
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to update achievement" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const unauthorized = await requireAdmin();
+  if (unauthorized) return unauthorized;
+
   const { id } = await params;
   try {
     await connectDB();
@@ -57,7 +64,7 @@ export async function DELETE(
     if (!Types.ObjectId.isValid(id)) {
       return NextResponse.json(
         { error: "Invalid achievement ID" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -66,7 +73,7 @@ export async function DELETE(
     if (!achievement) {
       return NextResponse.json(
         { error: "Achievement not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -74,7 +81,7 @@ export async function DELETE(
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to delete achievement" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
