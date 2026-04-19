@@ -51,7 +51,7 @@ const productSchema = new Schema<IProduct>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const Product: Model<IProduct> =

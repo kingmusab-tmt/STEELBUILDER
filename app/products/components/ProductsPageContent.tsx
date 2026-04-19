@@ -271,191 +271,191 @@ ${product.applications.map((a) => `- ${a}`).join("\n")}
               const currentCardIdx = cardImageIndices[product.id] || 0;
               const hasMultiple = allImages.length > 1;
               return (
-              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
-                <Card
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    transition: "all 0.3s",
-                    "&:hover": {
-                      transform: "translateY(-8px)",
-                      boxShadow: "0 15px 40px rgba(0, 0, 0, 0.15)",
-                    },
-                  }}
-                >
-                  <CardMedia
+                <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
+                  <Card
                     sx={{
-                      height: 240,
-                      position: "relative",
-                      backgroundColor: `${BLUE_GREEN}20`,
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      transition: "all 0.3s",
+                      "&:hover": {
+                        transform: "translateY(-8px)",
+                        boxShadow: "0 15px 40px rgba(0, 0, 0, 0.15)",
+                      },
                     }}
                   >
-                    <Image
-                      src={allImages[currentCardIdx] || product.image}
-                      alt={`${product.name} view ${currentCardIdx + 1}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      style={{
-                        objectFit: "cover",
-                      }}
-                    />
-                    {hasMultiple && (
-                      <>
-                        <IconButton
-                          size="small"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setCardImageIndices((prev) => ({
-                              ...prev,
-                              [product.id]:
-                                (currentCardIdx - 1 + allImages.length) %
-                                allImages.length,
-                            }));
-                          }}
-                          sx={{
-                            position: "absolute",
-                            left: 4,
-                            top: "50%",
-                            transform: "translateY(-50%)",
-                            backgroundColor: "rgba(0,0,0,0.5)",
-                            color: "white",
-                            padding: "4px",
-                            "&:hover": {
-                              backgroundColor: "rgba(0,0,0,0.75)",
-                            },
-                          }}
-                        >
-                          <NavigateBefore fontSize="small" />
-                        </IconButton>
-                        <IconButton
-                          size="small"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setCardImageIndices((prev) => ({
-                              ...prev,
-                              [product.id]:
-                                (currentCardIdx + 1) % allImages.length,
-                            }));
-                          }}
-                          sx={{
-                            position: "absolute",
-                            right: 4,
-                            top: "50%",
-                            transform: "translateY(-50%)",
-                            backgroundColor: "rgba(0,0,0,0.5)",
-                            color: "white",
-                            padding: "4px",
-                            "&:hover": {
-                              backgroundColor: "rgba(0,0,0,0.75)",
-                            },
-                          }}
-                        >
-                          <NavigateNext fontSize="small" />
-                        </IconButton>
-                        <Box
-                          sx={{
-                            position: "absolute",
-                            bottom: 8,
-                            width: "100%",
-                            display: "flex",
-                            justifyContent: "center",
-                            gap: 0.5,
-                          }}
-                        >
-                          {allImages.map((_, i) => (
-                            <Box
-                              key={i}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setCardImageIndices((prev) => ({
-                                  ...prev,
-                                  [product.id]: i,
-                                }));
-                              }}
-                              sx={{
-                                width: 6,
-                                height: 6,
-                                borderRadius: "50%",
-                                backgroundColor:
-                                  i === currentCardIdx
-                                    ? "white"
-                                    : "rgba(255,255,255,0.5)",
-                                cursor: "pointer",
-                                transition: "background-color 0.2s",
-                              }}
-                            />
-                          ))}
-                        </Box>
-                      </>
-                    )}
-                  </CardMedia>
-                  <CardContent sx={{ flexGrow: 1, pb: 1 }}>
-                    <Chip
-                      label={product.category}
-                      size="small"
+                    <CardMedia
                       sx={{
+                        height: 240,
+                        position: "relative",
                         backgroundColor: `${BLUE_GREEN}20`,
-                        color: BLUE_GREEN,
-                        mb: 2,
-                      }}
-                    />
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        mb: 1,
-                        fontWeight: "bold",
-                        color: MAGENTA,
-                        minHeight: "2.5rem",
                       }}
                     >
-                      {product.name}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "text.secondary",
-                        mb: 2,
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {product.description}
-                    </Typography>
-                  </CardContent>
-                  <Box sx={{ p: 2, pt: 0, display: "flex", gap: 1 }}>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      onClick={() => handleProductClick(product)}
-                      sx={{
-                        backgroundColor: BLUE_GREEN,
-                        "&:hover": {
-                          backgroundColor: MAGENTA,
-                        },
-                      }}
-                    >
-                      Details
-                    </Button>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      startIcon={<WhatsApp />}
-                      onClick={() => handleWhatsApp(product)}
-                      sx={{
-                        backgroundColor: "#25D366",
-                        "&:hover": {
-                          backgroundColor: "#20BA5A",
-                        },
-                      }}
-                    >
-                      WhatsApp
-                    </Button>
-                  </Box>
-                </Card>
-              </Grid>
+                      <Image
+                        src={allImages[currentCardIdx] || product.image}
+                        alt={`${product.name} view ${currentCardIdx + 1}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        style={{
+                          objectFit: "cover",
+                        }}
+                      />
+                      {hasMultiple && (
+                        <>
+                          <IconButton
+                            size="small"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setCardImageIndices((prev) => ({
+                                ...prev,
+                                [product.id]:
+                                  (currentCardIdx - 1 + allImages.length) %
+                                  allImages.length,
+                              }));
+                            }}
+                            sx={{
+                              position: "absolute",
+                              left: 4,
+                              top: "50%",
+                              transform: "translateY(-50%)",
+                              backgroundColor: "rgba(0,0,0,0.5)",
+                              color: "white",
+                              padding: "4px",
+                              "&:hover": {
+                                backgroundColor: "rgba(0,0,0,0.75)",
+                              },
+                            }}
+                          >
+                            <NavigateBefore fontSize="small" />
+                          </IconButton>
+                          <IconButton
+                            size="small"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setCardImageIndices((prev) => ({
+                                ...prev,
+                                [product.id]:
+                                  (currentCardIdx + 1) % allImages.length,
+                              }));
+                            }}
+                            sx={{
+                              position: "absolute",
+                              right: 4,
+                              top: "50%",
+                              transform: "translateY(-50%)",
+                              backgroundColor: "rgba(0,0,0,0.5)",
+                              color: "white",
+                              padding: "4px",
+                              "&:hover": {
+                                backgroundColor: "rgba(0,0,0,0.75)",
+                              },
+                            }}
+                          >
+                            <NavigateNext fontSize="small" />
+                          </IconButton>
+                          <Box
+                            sx={{
+                              position: "absolute",
+                              bottom: 8,
+                              width: "100%",
+                              display: "flex",
+                              justifyContent: "center",
+                              gap: 0.5,
+                            }}
+                          >
+                            {allImages.map((_, i) => (
+                              <Box
+                                key={i}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setCardImageIndices((prev) => ({
+                                    ...prev,
+                                    [product.id]: i,
+                                  }));
+                                }}
+                                sx={{
+                                  width: 6,
+                                  height: 6,
+                                  borderRadius: "50%",
+                                  backgroundColor:
+                                    i === currentCardIdx
+                                      ? "white"
+                                      : "rgba(255,255,255,0.5)",
+                                  cursor: "pointer",
+                                  transition: "background-color 0.2s",
+                                }}
+                              />
+                            ))}
+                          </Box>
+                        </>
+                      )}
+                    </CardMedia>
+                    <CardContent sx={{ flexGrow: 1, pb: 1 }}>
+                      <Chip
+                        label={product.category}
+                        size="small"
+                        sx={{
+                          backgroundColor: `${BLUE_GREEN}20`,
+                          color: BLUE_GREEN,
+                          mb: 2,
+                        }}
+                      />
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          mb: 1,
+                          fontWeight: "bold",
+                          color: MAGENTA,
+                          minHeight: "2.5rem",
+                        }}
+                      >
+                        {product.name}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "text.secondary",
+                          mb: 2,
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {product.description}
+                      </Typography>
+                    </CardContent>
+                    <Box sx={{ p: 2, pt: 0, display: "flex", gap: 1 }}>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        onClick={() => handleProductClick(product)}
+                        sx={{
+                          backgroundColor: BLUE_GREEN,
+                          "&:hover": {
+                            backgroundColor: MAGENTA,
+                          },
+                        }}
+                      >
+                        Details
+                      </Button>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        startIcon={<WhatsApp />}
+                        onClick={() => handleWhatsApp(product)}
+                        sx={{
+                          backgroundColor: "#25D366",
+                          "&:hover": {
+                            backgroundColor: "#20BA5A",
+                          },
+                        }}
+                      >
+                        WhatsApp
+                      </Button>
+                    </Box>
+                  </Card>
+                </Grid>
               );
             })
           ) : (
@@ -534,7 +534,7 @@ ${product.applications.map((a) => `- ${a}`).join("\n")}
                               setDetailImageIndex(
                                 (prev) =>
                                   (prev - 1 + allDetailImages.length) %
-                                  allDetailImages.length
+                                  allDetailImages.length,
                               )
                             }
                             sx={{
@@ -555,7 +555,7 @@ ${product.applications.map((a) => `- ${a}`).join("\n")}
                             size="small"
                             onClick={() =>
                               setDetailImageIndex(
-                                (prev) => (prev + 1) % allDetailImages.length
+                                (prev) => (prev + 1) % allDetailImages.length,
                               )
                             }
                             sx={{

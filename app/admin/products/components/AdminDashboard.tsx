@@ -24,7 +24,16 @@ import {
   CircularProgress,
   LinearProgress,
 } from "@mui/material";
-import { Edit, Delete, Add, CloudUpload, ArrowBack, Close, NavigateBefore, NavigateNext } from "@mui/icons-material";
+import {
+  Edit,
+  Delete,
+  Add,
+  CloudUpload,
+  ArrowBack,
+  Close,
+  NavigateBefore,
+  NavigateNext,
+} from "@mui/icons-material";
 import { MAGENTA, BLUE_GREEN } from "../../../theme/theme";
 import AdminHeader from "@/app/admin/components/AdminHeader";
 import {
@@ -129,7 +138,7 @@ export default function AdminProductsDashboard() {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -185,7 +194,7 @@ export default function AdminProductsDashboard() {
   };
 
   const handleAdditionalImageUpload = async (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -253,7 +262,7 @@ export default function AdminProductsDashboard() {
         if (!response.ok) {
           const error = await response.json();
           setMessage(
-            `Error updating product: ${error.error || "Unknown error"}`
+            `Error updating product: ${error.error || "Unknown error"}`,
           );
           return;
         }
@@ -267,7 +276,7 @@ export default function AdminProductsDashboard() {
         if (!response.ok) {
           const error = await response.json();
           setMessage(
-            `Error creating product: ${error.error || "Unknown error"}`
+            `Error creating product: ${error.error || "Unknown error"}`,
           );
           return;
         }

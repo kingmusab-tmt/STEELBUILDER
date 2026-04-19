@@ -74,6 +74,7 @@ const fallbackFAQList: FAQItem[] = [
 
 interface FAQSectionProps {
   faqs?: FAQItem[];
+  headingComponent?: "h1" | "h2";
 }
 
 export function FAQSchema({ faqs }: { faqs: FAQItem[] }) {
@@ -100,7 +101,10 @@ export function FAQSchema({ faqs }: { faqs: FAQItem[] }) {
 
 export { fallbackFAQList };
 
-export default function FAQSection({ faqs }: FAQSectionProps) {
+export default function FAQSection({
+  faqs,
+  headingComponent = "h2",
+}: FAQSectionProps) {
   const faqList = faqs && faqs.length > 0 ? faqs : fallbackFAQList;
 
   return (
@@ -109,7 +113,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
       <Container maxWidth="xl">
         <Typography
           variant="h2"
-          component="h2"
+          component={headingComponent}
           sx={{
             fontWeight: "bold",
             mb: 2,

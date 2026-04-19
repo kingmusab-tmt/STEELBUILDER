@@ -38,7 +38,7 @@ export default function Unauthorized() {
       {/* Error Message */}
       <Typography
         variant="h3"
-        component="h5"
+        component="h1"
         gutterBottom
         sx={{ fontWeight: 700 }}
       >

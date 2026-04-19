@@ -236,6 +236,27 @@ function Login() {
                     Create an account
                   </Link>
                 </Typography>
+                <Typography variant="body2" sx={{ mt: 1.5 }}>
+                  <Link
+                    href="/"
+                    style={{
+                      color: theme.palette.primary.main,
+                      textDecoration: "none",
+                      marginRight: 12,
+                    }}
+                  >
+                    Back to Home
+                  </Link>
+                  <Link
+                    href="/contact"
+                    style={{
+                      color: theme.palette.primary.main,
+                      textDecoration: "none",
+                    }}
+                  >
+                    Contact Us
+                  </Link>
+                </Typography>
               </Box>
             </Box>
           </Box>

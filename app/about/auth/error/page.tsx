@@ -20,7 +20,7 @@ const AuthErrorContent = () => {
   useEffect(() => {
     // Auto-redirect to login page after 3 seconds
     const timer = setTimeout(() => {
-      router.push("/auth/signin");
+      router.push("/login");
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -54,7 +54,7 @@ const AuthErrorContent = () => {
           textAlign: "center",
         }}
       >
-        <Typography variant="h4" gutterBottom color="primary">
+        <Typography variant="h4" component="h1" gutterBottom color="primary">
           Authentication Error
         </Typography>
 
@@ -81,10 +81,7 @@ const AuthErrorContent = () => {
           <Box
             sx={{ mt: 2, display: "flex", gap: 2, justifyContent: "center" }}
           >
-            <Button
-              variant="contained"
-              onClick={() => router.push("/auth/signin")}
-            >
+            <Button variant="contained" component={Link} href="/login">
               Go to Login Now
             </Button>
             <Button variant="outlined" component={Link} href="/">

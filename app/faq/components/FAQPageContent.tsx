@@ -10,7 +10,7 @@ export default function FAQPageContent() {
     <>
       <Header />
       <BreadcrumbNav />
-      <FAQSection />
+      <FAQSection headingComponent="h1" />
       <Footer />
     </>
   );

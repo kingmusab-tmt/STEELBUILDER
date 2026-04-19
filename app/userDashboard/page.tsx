@@ -24,6 +24,7 @@ import {
 } from "@mui/icons-material";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { MAGENTA, BLUE_GREEN } from "@/app/theme/theme";
@@ -192,16 +193,18 @@ export default function UserDashboardPage() {
               }}
             >
               <Card
+                component={Link}
+                href="/"
                 sx={{
                   height: "100%",
                   cursor: "pointer",
                   transition: "all 0.3s",
+                  textDecoration: "none",
                   "&:hover": {
                     transform: "translateY(-8px)",
                     boxShadow: 4,
                   },
                 }}
-                onClick={() => router.push("/")}
               >
                 <CardContent sx={{ textAlign: "center" }}>
                   <Home sx={{ fontSize: 50, color: BLUE_GREEN, mb: 2 }} />
@@ -217,16 +220,18 @@ export default function UserDashboardPage() {
                 </CardContent>
               </Card>
               <Card
+                component={Link}
+                href="/products"
                 sx={{
                   height: "100%",
                   cursor: "pointer",
                   transition: "all 0.3s",
+                  textDecoration: "none",
                   "&:hover": {
                     transform: "translateY(-8px)",
                     boxShadow: 4,
                   },
                 }}
-                onClick={() => router.push("/products")}
               >
                 <CardContent sx={{ textAlign: "center" }}>
                   <Engineering
@@ -244,16 +249,18 @@ export default function UserDashboardPage() {
                 </CardContent>
               </Card>
               <Card
+                component={Link}
+                href="/gallery"
                 sx={{
                   height: "100%",
                   cursor: "pointer",
                   transition: "all 0.3s",
+                  textDecoration: "none",
                   "&:hover": {
                     transform: "translateY(-8px)",
                     boxShadow: 4,
                   },
                 }}
-                onClick={() => router.push("/gallery")}
               >
                 <CardContent sx={{ textAlign: "center" }}>
                   <PhotoLibrary
@@ -271,16 +278,18 @@ export default function UserDashboardPage() {
                 </CardContent>
               </Card>
               <Card
+                component={Link}
+                href="/contact"
                 sx={{
                   height: "100%",
                   cursor: "pointer",
                   transition: "all 0.3s",
+                  textDecoration: "none",
                   "&:hover": {
                     transform: "translateY(-8px)",
                     boxShadow: 4,
                   },
                 }}
-                onClick={() => router.push("/contact")}
               >
                 <CardContent sx={{ textAlign: "center" }}>
                   <Phone sx={{ fontSize: 50, color: BLUE_GREEN, mb: 2 }} />
