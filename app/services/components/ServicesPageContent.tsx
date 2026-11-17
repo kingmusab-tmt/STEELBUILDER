@@ -18,6 +18,9 @@ import {
   Build,
   Handyman,
   Engineering,
+  Plumbing,
+  Hardware,
+  PrecisionManufacturing,
   LocalShipping,
   Support,
   Verified,
@@ -81,6 +84,18 @@ export default function ServicesPageContent() {
       ],
     },
     {
+  icon: <PrecisionManufacturing sx={{ fontSize: 50, color: MAGENTA }} />,
+  title: "Mechanical Engineering & Fabrication",
+  description:
+    "Backed by workshop machining expertise and rigorous quality verification, we develop precision industrial components from initial drawings to final inspection.",
+  features: [
+    "Engineering drawings and design development",
+    "CNC and conventional machining (milling, turning, drilling, threading)",
+    "Custom industrial components and fittings",
+    "Material verification, inspection, and engineering review",
+  ],
+},
+    {
       icon: <Handyman sx={{ fontSize: 50, color: BLUE_GREEN }} />,
       title: "Maintenance & Repair Services",
       description:
@@ -104,6 +119,31 @@ export default function ServicesPageContent() {
         "Documentation and manuals",
       ],
     },
+    {
+  icon: <Hardware sx={{ fontSize: 50, color: MAGENTA }} />,
+  title: "Mechanical Leak-Sealing Clamp Fabrication",
+  description:
+    "We engineer and manufacture custom pressure-containing repair assemblies and mechanical containment clamps tailored to industrial pipelines and process equipment.",
+  features: [
+    "Split mechanical enclosure clamps",
+    "Flange and ring clamps",
+    "Tee and branch clamps",
+    "Custom-engineered pipe containment assemblies",
+  ],
+},
+{
+  icon: <Plumbing sx={{ fontSize: 50, color: MAGENTA }} />,
+  title: "Sealant Injection Technology",
+  description:
+    "We deliver online leak-sealing support using specialist injection systems and industrial sealants to keep critical plant infrastructure operational.",
+  features: [
+    "Specialist sealant injection systems",
+    "Injection fittings and accessories",
+    "Valve and pipe-gland sealing support",
+    "Industrial sealant application",
+  ],
+},
+
   ];
 
   const processSteps = [

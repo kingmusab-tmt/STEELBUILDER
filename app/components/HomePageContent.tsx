@@ -24,6 +24,9 @@ import {
   Engineering,
   Settings,
   Factory,
+  Hardware, 
+  Plumbing,
+  Handyman,
   Build,
   PrecisionManufacturing,
   ArrowForward,
@@ -229,43 +232,61 @@ export default function HomePageContent() {
   };
 
   const services = [
-    {
-      icon: <Construction sx={{ fontSize: 40, color: BLUE_GREEN }} />,
-      title: "Custom Steel Fabrication",
-      description:
-        "Bespoke fabrication services to turn your designs into high-quality, precision-engineered steel components.",
-    },
-    {
-      icon: <Engineering sx={{ fontSize: 40, color: MAGENTA }} />,
-      title: "Plasma & Laser Cutting",
-      description:
-        "Precise cuts on various thicknesses of steel plate with clean edges and tight tolerances.",
-    },
-    {
-      icon: <Settings sx={{ fontSize: 40, color: GOLD }} />,
-      title: "Welding & Assembly",
-      description:
-        "Professional MIG, TIG, and stick welding services for complex structures and components.",
-    },
-    {
-      icon: <Factory sx={{ fontSize: 40, color: BLUE_GREEN }} />,
-      title: "Bending & Rolling",
-      description:
-        "Custom shaping of steel sheets, plates, and beams for architectural and industrial needs.",
-    },
-    {
-      icon: <Build sx={{ fontSize: 40, color: MAGENTA }} />,
-      title: "Galvanizing & Finishing",
-      description:
-        "Protective hot-dip galvanizing and finishing services, including painting and powder coating.",
-    },
-    {
-      icon: <PrecisionManufacturing sx={{ fontSize: 40, color: GOLD }} />,
-      title: "Installation & Maintenance",
-      description:
-        "Professional installation and maintenance services for all industrial machinery.",
-    },
-  ];
+  {
+    icon: <Construction sx={{ fontSize: 40, color: BLUE_GREEN }} />,
+    title: "Custom Steel Fabrication",
+    description:
+      "Bespoke fabrication services to turn your designs into high-quality, precision-engineered steel components.",
+  },
+  {
+    icon: <Engineering sx={{ fontSize: 40, color: MAGENTA }} />,
+    title: "Plasma & Laser Cutting",
+    description:
+      "Precise cuts on various thicknesses of steel plate with clean edges and tight tolerances.",
+  },
+  {
+    icon: <Settings sx={{ fontSize: 40, color: GOLD }} />,
+    title: "Welding & Assembly",
+    description:
+      "Professional MIG, TIG, and stick welding services for complex structures and components.",
+  },
+  {
+    icon: <Factory sx={{ fontSize: 40, color: BLUE_GREEN }} />,
+    title: "Bending & Rolling",
+    description:
+      "Custom shaping of steel sheets, plates, and beams for architectural and industrial needs.",
+  },
+  {
+    icon: <Build sx={{ fontSize: 40, color: MAGENTA }} />,
+    title: "Galvanizing & Finishing",
+    description:
+      "Protective hot-dip galvanizing and finishing services, including painting and powder coating.",
+  },
+  {
+    icon: <PrecisionManufacturing sx={{ fontSize: 40, color: GOLD }} />,
+    title: "Installation & Maintenance",
+    description:
+      "Professional installation and maintenance services for all industrial machinery.",
+  },
+  {
+    icon: <Hardware sx={{ fontSize: 40, color: BLUE_GREEN }} />,
+    title: "Mechanical Leak-Sealing Clamp Fabrication",
+    description:
+      "Custom-engineered split, flange, ring, and tee containment clamps built for industrial pipelines and process equipment.",
+  },
+  {
+    icon: <Plumbing sx={{ fontSize: 40, color: MAGENTA }} />,
+    title: "Sealant Injection Technology",
+    description:
+      "Specialist online leak-sealing systems, injection fittings, and valve or pipe-gland sealing support for active plant operations.",
+  },
+  {
+    icon: <Handyman sx={{ fontSize: 40, color: GOLD }} />,
+    title: "Mechanical Engineering & Fabrication",
+    description:
+      "Technical drawings, CNC and conventional machining, and custom industrial fittings backed by rigorous inspection and material verification.",
+  },
+];
 
   if (loading) {
     return (
